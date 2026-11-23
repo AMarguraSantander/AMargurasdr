@@ -291,21 +291,23 @@
     letter-spacing: 0.3px;
 }
         
-        /* --- SECCIÓN ESPECIAL: CONCIERTO EN LATAS --- */
+/* --- SECCIÓN ESPECIAL ENMARCADA: CONCIERTO EN LATAS --- */
 .seccion-concierto {
-    max-width: 1300px;
+    max-width: 1260px;
     margin: 70px auto 0 auto;
-    padding: 0 20px;
+    padding: 40px 30px;
+    background: linear-gradient(145deg, #141414 0%, #0d0d0d 100%);
+    border: 2px solid var(--dorado);
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.75), inset 0 0 25px rgba(128, 0, 0, 0.25);
+    position: relative;
 }
 
 .cabecera-concierto {
     text-align: center;
     margin-bottom: 35px;
-    padding: 25px 20px;
-    background: linear-gradient(135deg, rgba(128, 0, 0, 0.25) 0%, rgba(18, 18, 18, 0.95) 100%);
-    border-left: 4px solid var(--dorado);
-    border-right: 4px solid var(--dorado);
-    border-radius: 8px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.35);
 }
 
 .cabecera-concierto h2 {
@@ -325,12 +327,31 @@
     font-weight: 600;
 }
 
-/* Reutilizamos la cuadrícula dentro de la sección especial sin doble margen lateral */
+.cabecera-concierto .descripcion-concierto {
+    margin: 15px auto 0 auto;
+    max-width: 750px;
+    color: #cccccc;
+    font-size: 1rem;
+    line-height: 1.6;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+}
+
 .seccion-concierto .video-container {
     margin: 0;
     padding: 0;
 }
 
+@media (max-width: 768px) {
+    .seccion-concierto {
+        margin: 50px 15px 0 15px;
+        padding: 25px 15px;
+    }
+
+    .cabecera-concierto h2 {
+        font-size: 1.55rem;
+    }
+}
 @media (max-width: 768px) {
     .cabecera-concierto h2 {
         font-size: 1.55rem;
