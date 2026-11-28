@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacto - A.M. Amargura</title>
+    <title>Contacto y Redes Sociales - A.M. Amargura</title>
     <link rel="icon" type="image/png" href="escudo.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <style>
         :root {
@@ -30,7 +31,7 @@
             background-color: var(--crema);
             color: var(--texto);
             overflow-x: hidden;
-            line-height: 1.7;
+            line-height: 1.75;
         }
 
         h1, h2, h3, .main-title {
@@ -171,7 +172,7 @@
         }
 
         .hero-contacto h1 {
-            font-size: 2.7rem;
+            font-size: 2.65rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 3.5px;
@@ -184,7 +185,7 @@
         /* --- TARJETAS DE CONTACTO --- */
         .container {
             max-width: 1120px;
-            margin: -45px auto 95px;
+            margin: -45px auto 50px;
             padding: 0 20px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -223,7 +224,7 @@
             align-items: center;
             justify-content: center;
             margin: 0 auto 20px;
-            font-size: 1.5rem;
+            font-size: 1.45rem;
             color: var(--granate);
         }
 
@@ -301,7 +302,7 @@
             padding: 55px 40px;
             text-align: center;
             color: var(--blanco);
-            margin-top: 12px;
+            margin-top: 8px;
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
         }
 
@@ -343,6 +344,135 @@
             color: var(--negro);
         }
 
+        /* --- SECCIÓN REDES SOCIALES --- */
+        .social-section {
+            max-width: 1120px;
+            margin: 0 auto 95px;
+            padding: 0 20px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .social-header {
+            margin-bottom: 36px;
+        }
+
+        .social-section h2 {
+            color: var(--granate);
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            font-weight: 600;
+            margin: 0 0 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--dorado);
+            display: inline-block;
+            font-size: 1.85rem;
+        }
+
+        .social-section > p {
+            color: var(--texto-secundario);
+            margin: 8px auto 38px;
+            max-width: 640px;
+            font-size: 0.98rem;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+            gap: 26px;
+        }
+
+        .social-card {
+            background: var(--blanco);
+            padding: 36px 24px 28px;
+            border-radius: 3px;
+            text-decoration: none;
+            color: var(--texto);
+            border: 1px solid var(--borde-sutil);
+            border-top: 3px solid var(--granate);
+            box-shadow: 0 6px 22px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .icon-box {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: var(--crema);
+            border: 1px solid var(--dorado);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+            font-size: 1.85rem;
+            color: var(--granate);
+            transition: all 0.3s ease;
+        }
+
+        .social-card h3 {
+            margin: 8px 0 6px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+            font-size: 1.15rem;
+            color: var(--granate);
+            transition: color 0.3s ease;
+        }
+
+        .social-card span {
+            font-size: 0.86rem;
+            color: var(--texto-secundario);
+            margin-bottom: 24px;
+            line-height: 1.45;
+            transition: color 0.3s ease;
+        }
+
+        .social-btn {
+            padding: 10px 24px;
+            border-radius: 2px;
+            font-size: 0.76rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: var(--crema);
+            color: var(--granate);
+            border: 1px solid var(--dorado);
+            transition: all 0.3s ease;
+            margin-top: auto;
+        }
+
+        .social-card:hover {
+            transform: translateY(-5px);
+            background: var(--granate);
+            border-color: var(--dorado);
+            border-top-color: var(--dorado);
+            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.14);
+        }
+
+        .social-card:hover .icon-box {
+            background: var(--negro);
+            color: var(--dorado-claro);
+            border-color: var(--dorado-claro);
+        }
+
+        .social-card:hover h3 {
+            color: var(--dorado-claro);
+        }
+
+        .social-card:hover span {
+            color: #e6e2d8;
+        }
+
+        .social-card:hover .social-btn {
+            background: var(--dorado);
+            color: var(--negro);
+            border-color: var(--dorado-claro);
+        }
+
         /* --- BANNER INFERIOR --- */
         .banner-fijo {
             background-color: var(--granate-oscuro);
@@ -366,9 +496,11 @@
         @media (max-width: 768px) {
             .hero-contacto { height: 36vh; }
             .hero-contacto h1 { font-size: 1.9rem; letter-spacing: 2px; }
-            .container { grid-template-columns: 1fr; margin-top: -25px; margin-bottom: 85px; }
+            .container { grid-template-columns: 1fr; margin-top: -25px; margin-bottom: 40px; }
             .join-us { padding: 36px 22px; }
             .join-us h2 { font-size: 1.5rem; }
+            .social-section { margin-bottom: 85px; }
+            .social-section h2 { font-size: 1.5rem; }
         }
 
         @media (max-width: 480px) {
@@ -422,7 +554,7 @@
     <div class="container">
 
         <div class="contact-card">
-            <div class="icon-circle">✉</div>
+            <div class="icon-circle"><i class="fa-regular fa-envelope"></i></div>
             <div>
                 <h3>Correo Electrónico</h3>
                 <p>Para contrataciones, gestión de eventos o información general.</p>
@@ -431,21 +563,21 @@
         </div>
 
         <div class="contact-card">
-            <div class="icon-circle">📍</div>
+            <div class="icon-circle"><i class="fa-solid fa-location-dot"></i></div>
             <div>
                 <h3>Nuestra Sede</h3>
                 <p>Calle Navarra, s/n, bajo, 39007<br>Santander, Cantabria</p>
             </div>
-            <a href="https://www.google.com/maps/search/?api=1&query=Calle+Navarra+Santander" target="_blank" class="btn-action btn-maps">Cómo llegar</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Calle+Navarra+Santander" target="_blank" rel="noopener noreferrer" class="btn-action btn-maps">Cómo llegar</a>
         </div>
 
         <div class="contact-card">
-            <div class="icon-circle">📞</div>
+            <div class="icon-circle"><i class="fa-brands fa-whatsapp"></i></div>
             <div>
                 <h3>WhatsApp Directo</h3>
                 <p>Atención directa para consultas y comunicaciones de secretaría.</p>
             </div>
-            <a href="https://wa.me/34636290866" target="_blank" class="btn-action btn-whatsapp">Enviar Mensaje</a>
+            <a href="https://wa.me/34636290866" target="_blank" rel="noopener noreferrer" class="btn-action btn-whatsapp">Enviar Mensaje</a>
         </div>
 
         <section class="join-us">
@@ -455,6 +587,49 @@
         </section>
 
     </div>
+
+    <section class="social-section">
+        <h2>Conecta con nosotros</h2>
+        <p>Sigue el día a día de nuestra formación a través de nuestros canales oficiales.</p>
+
+        <div class="social-grid">
+            <a href="https://www.facebook.com/amargurasdr" target="_blank" rel="noopener noreferrer" class="social-card">
+                <div class="icon-box">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </div>
+                <h3>Facebook</h3>
+                <span>@amargurasdr</span>
+                <div class="social-btn">Seguir</div>
+            </a>
+
+            <a href="https://twitter.com/amargurasdr" target="_blank" rel="noopener noreferrer" class="social-card">
+                <div class="icon-box">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </div>
+                <h3>X / Twitter</h3>
+                <span>@amargurasdr</span>
+                <div class="social-btn">Seguir</div>
+            </a>
+
+            <a href="https://www.instagram.com/amargurasdr" target="_blank" rel="noopener noreferrer" class="social-card">
+                <div class="icon-box">
+                    <i class="fa-brands fa-instagram"></i>
+                </div>
+                <h3>Instagram</h3>
+                <span>@amargurasdr</span>
+                <div class="social-btn">Perfil</div>
+            </a>
+
+            <a href="https://www.youtube.com/@AMarguraSDR" target="_blank" rel="noopener noreferrer" class="social-card">
+                <div class="icon-box">
+                    <i class="fa-brands fa-youtube"></i>
+                </div>
+                <h3>YouTube</h3>
+                <span>A.M. Virgen de la Amargura de Santander</span>
+                <div class="social-btn">Ver canal</div>
+            </a>
+        </div>
+    </section>
 
     <div class="banner-fijo">
         Agrupación Musical Virgen de la Amargura · Banda Decana de Santander
