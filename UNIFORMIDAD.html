@@ -4,144 +4,214 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Uniformidad - A.M. Amargura</title>
-        <link rel="icon" type="image/png" href="escudo.png">
+    <link rel="icon" type="image/png" href="escudo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --granate: #800000;
-            --dorado: #d4af37;
-            --azul-marino: #001a33; /* Azul profundo para el uniforme */
-            --crema: #fdfaf5;
-            --texto: #2c2c2c;
+            --granate: #5c0a14;
+            --granate-oscuro: #3d060d;
+            --dorado: #b89758;
+            --dorado-claro: #d4bc8b;
+            --azul-marino: #12263a;
+            --negro: #141414;
+            --crema: #f7f5f0;
+            --blanco: #ffffff;
+            --borde-sutil: #e2dcd0;
+            --texto: #242424;
+            --texto-secundario: #55524d;
         }
 
         body {
             margin: 0;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             background-color: var(--crema);
             color: var(--texto);
-            line-height: 1.8;
+            overflow-x: hidden;
+            line-height: 1.75;
         }
 
-              /* --- NAVBAR (Consistente con Homenaje y Contacto) --- */
+        h1, h2, .main-title {
+            font-family: 'Cinzel', Georgia, serif;
+        }
+
+        /* --- NAVBAR --- */
         .navbar {
             background-color: var(--granate);
-            height: 75px;
+            height: 82px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 25px;
+            padding: 0 40px;
             position: sticky;
             top: 0;
             z-index: 2000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            border-bottom: 2px solid var(--dorado);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
         }
 
-        .logo-nav { text-decoration: none; display: flex; flex-direction: column; }
-        .logo-nav .main-title { color: white; font-weight: bold; font-size: 1.2rem; text-transform: uppercase; }
-        .logo-nav .sub-title { color: var(--dorado); font-size: 0.75rem; letter-spacing: 2px; }
+        .logo-nav {
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-nav .main-title {
+            color: var(--blanco);
+            font-weight: 600;
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo-nav .sub-title {
+            color: var(--dorado-claro);
+            font-size: 0.72rem;
+            letter-spacing: 4px;
+            margin-top: 2px;
+            font-weight: 500;
+        }
 
         .menu-btn {
-            width: 35px;
-            height: 25px;
+            width: 32px;
+            height: 22px;
             cursor: pointer;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             z-index: 3001;
         }
-        .menu-btn span { display: block; height: 3px; width: 100%; background: white; border-radius: 3px; }
 
-          /* SIDEBAR */ 
-         .sidebar { 
-             position: fixed; 
-             top: 0; 
-             right: -100%; 
-             width: 300px; 
-             height: 100vh; 
-             background: #111; 
-             z-index: 2500; 
-             transition: 0.5s ease; 
-             display: flex; 
-             flex-direction: column; 
-             padding-top: 100px; 
-         } 
+        .menu-btn span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background: var(--dorado-claro);
+            transition: 0.3s ease;
+        }
 
-         .sidebar.active { right: 0; } 
+        /* SIDEBAR */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 310px;
+            height: 100vh;
+            background: var(--negro);
+            border-left: 1px solid var(--dorado);
+            z-index: 2500;
+            transition: 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            flex-direction: column;
+            padding-top: 95px;
+            overflow-y: auto;
+        }
 
-         .sidebar a { 
-             color: #ddd; 
-             text-decoration: none; 
-             padding: 15px 40px; 
-             font-size: 1rem; 
-             text-transform: uppercase; 
-             font-weight: bold; 
-             border-left: 3px solid transparent; 
-         } 
+        .sidebar.active { right: 0; }
 
-         .sidebar a:hover { 
-             color: var(--dorado); 
-             background: rgba(255,255,255,0.05); 
-             border-left: 3px solid var(--dorado); 
-         } 
+        .sidebar-section-label {
+            padding: 20px 40px 6px;
+            color: var(--dorado);
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            font-weight: 600;
+            border-top: 1px solid rgba(184, 151, 88, 0.15);
+            margin-top: 10px;
+        }
 
-         .overlay { 
-             position: fixed; 
-             top: 0; 
-             left: 0; 
-             width: 100%; 
-             height: 100%; 
-             background: rgba(0,0,0,0.6); 
-             backdrop-filter: blur(4px); 
-             display: none; 
-             z-index: 2400; 
-         } 
+        .sidebar a {
+            color: #d8d4cc;
+            text-decoration: none;
+            padding: 13px 40px;
+            font-size: 0.88rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 500;
+            border-left: 3px solid transparent;
+            transition: all 0.25s ease;
+        }
 
-         .overlay.active { display: block; } 
+        .sidebar a:hover {
+            color: var(--dorado-claro);
+            background: rgba(184, 151, 88, 0.08);
+            border-left: 3px solid var(--dorado);
+        }
 
-        /* --- CONTENIDO UNIFORMIDAD --- */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.65);
+            backdrop-filter: blur(2px);
+            display: none;
+            z-index: 2400;
+        }
+
+        .overlay.active { display: block; }
+
+        /* --- HERO UNIFORMIDAD --- */
         .hero-uniforme {
-            height: 45vh;
-            background: linear-gradient(rgba(66, 66, 68, 0.6), rgba(0, 0, 0, 0.8)), url('WhatsApp Image 2026-03-03 at 14.43.45.jpeg');
+            height: 44vh;
+            background:
+                linear-gradient(rgba(15, 10, 11, 0.68), rgba(20, 14, 15, 0.85)),
+                url('WhatsApp Image 2026-03-03 at 14.43.45.jpeg');
             background-size: cover;
             background-position: center;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: var(--blanco);
             text-align: center;
+            padding: 0 20px;
+            border-bottom: 2px solid var(--dorado);
         }
 
         .hero-uniforme h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 4px;
-            border-bottom: 3px solid var(--dorado);
-            padding-bottom: 15px;
+            margin: 0;
+            border-bottom: 1px solid var(--dorado);
+            padding-bottom: 14px;
+            text-shadow: 0 4px 18px rgba(0, 0, 0, 0.65);
         }
 
+        /* --- CONTENIDO PRINCIPAL --- */
         .content-wrap {
-            max-width: 1000px;
-            margin: -50px auto 60px;
-            background: white;
+            max-width: 1020px;
+            margin: -50px auto 95px;
+            background: var(--blanco);
+            border: 1px solid var(--borde-sutil);
+            border-top: 3px solid var(--granate);
             padding: 50px;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border-radius: 3px;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.07);
+            box-sizing: border-box;
         }
 
         .intro-uniforme {
-            font-family: 'Georgia', serif;
-            font-size: 1.2rem;
+            font-family: 'Lora', Georgia, serif;
+            font-size: 1.18rem;
             font-style: italic;
             text-align: center;
             color: var(--azul-marino);
-            margin-bottom: 40px;
+            margin: 0 auto 45px;
+            max-width: 740px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid var(--borde-sutil);
         }
 
         /* SECCIONES DE UNIFORMES */
         .seccion-uniforme {
             margin-bottom: 50px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 40px;
+            border-bottom: 1px solid var(--borde-sutil);
+            padding-bottom: 45px;
         }
 
         .seccion-uniforme:last-of-type {
@@ -152,47 +222,63 @@
         .seccion-uniforme h2 {
             color: var(--granate);
             text-transform: uppercase;
-            font-size: 1.6rem;
-            letter-spacing: 1px;
+            font-size: 1.65rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
             margin-top: 0;
-            border-bottom: 2px solid #f4f4f4;
-            padding-bottom: 10px;
+            margin-bottom: 28px;
         }
 
-        /* DISEÑOS DE REJILLAS PARA FOTOS Y DETALLES */
+        .seccion-uniforme h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 2px;
+            background: var(--dorado);
+            margin-top: 10px;
+        }
+
+        /* REJILLAS PARA FOTOS Y DETALLES */
         .grid-gala {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 25px;
+            gap: 32px;
+            margin-bottom: 28px;
         }
 
         .grid-verano {
             display: grid;
             grid-template-columns: 1.2fr 1fr;
-            gap: 30px;
-            margin-bottom: 25px;
+            gap: 32px;
+            margin-bottom: 28px;
         }
 
         .fotos-verano-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            gap: 18px;
         }
 
         .foto-uniforme-box {
-            background: #f4f4f4;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
+            background: var(--crema);
+            padding: 16px;
+            border: 1px solid var(--borde-sutil);
+            border-radius: 3px;
             text-align: center;
         }
 
         .foto-uniforme-box img {
             max-width: 100%;
             height: auto;
-            border-radius: 5px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 2px;
+            border: 1px solid #d6d0c4;
+        }
+
+        .foto-uniforme-box p {
+            font-size: 0.78rem;
+            color: var(--texto-secundario);
+            margin: 10px 0 0 0;
+            letter-spacing: 0.5px;
         }
 
         .especificaciones {
@@ -202,98 +288,103 @@
         }
 
         .dato-tecnico {
-            border-left: 3px solid var(--dorado);
-            padding-left: 15px;
-            margin-bottom: 20px;
+            border-left: 2px solid var(--dorado);
+            padding-left: 16px;
+            margin-bottom: 22px;
         }
 
         .dato-tecnico strong {
             display: block;
             text-transform: uppercase;
-            font-size: 0.8rem;
+            font-size: 0.74rem;
             color: var(--granate);
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            font-weight: 600;
         }
 
-        .dato-tecnico p { margin: 5px 0 0 0; font-weight: 500; }
+        .dato-tecnico p {
+            margin: 5px 0 0 0;
+            font-weight: 500;
+            color: var(--texto);
+            font-size: 0.94rem;
+        }
 
         .descripcion-larga {
-            background: #f9f9f9;
-            padding: 30px;
-            border-radius: 10px;
-            border-top: 5px solid var(--azul-marino);
+            background: var(--crema);
+            padding: 28px 32px;
+            border-radius: 3px;
+            border: 1px solid var(--borde-sutil);
+            border-top: 3px solid var(--azul-marino);
+        }
+
+        .descripcion-larga p {
+            margin: 0 0 14px 0;
+            color: var(--texto-secundario);
+            font-size: 0.95rem;
+        }
+
+        .descripcion-larga p:last-child {
+            margin-bottom: 0;
         }
 
         .galas-instrumento {
-            margin-top: 30px;
+            margin-top: 35px;
             text-align: center;
-            padding: 20px;
-            border: 1px dashed var(--dorado);
-            border-radius: 10px;
+            padding: 28px 30px;
+            background: var(--crema);
+            border: 1px solid var(--dorado);
+            border-radius: 3px;
         }
 
+        .galas-instrumento strong {
+            font-family: 'Cinzel', Georgia, serif;
+            color: var(--granate);
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1.5px;
+        }
+
+        .galas-instrumento p {
+            margin: 12px 0 0 0;
+            font-size: 0.95rem;
+            color: var(--texto-secundario);
+        }
+
+        /* --- BANNER INFERIOR --- */
+        .banner-fijo {
+            background-color: var(--granate-oscuro);
+            color: var(--dorado-claro);
+            border-top: 1px solid var(--dorado);
+            font-weight: 500;
+            letter-spacing: 1.2px;
+            padding: 10px 16px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            text-align: center;
+            box-sizing: border-box;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+        }
+
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             .grid-gala, .grid-verano { grid-template-columns: 1fr; }
             .fotos-verano-container { grid-template-columns: 1fr; }
-            .content-wrap { padding: 25px; margin: -20px 15px 40px; }
-            .hero-uniforme h1 { font-size: 1.8rem; }
+            .content-wrap { padding: 28px 20px; margin: -30px 15px 85px; }
+            .hero-uniforme h1 { font-size: 1.9rem; letter-spacing: 2px; }
+            .descripcion-larga { padding: 22px; }
         }
 
-        footer {
-            text-align: center;
-            padding: 40px;
-            border-top: 1px solid #222;
-            color: #555;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
+        @media (max-width: 480px) {
+            .navbar { padding: 0 18px; height: 74px; }
+            .logo-nav .main-title { font-size: 0.95rem; letter-spacing: 1px; }
+            .logo-nav .sub-title { font-size: 0.65rem; letter-spacing: 2px; }
+            .hero-uniforme h1 { font-size: 1.55rem; }
+            .banner-fijo { font-size: 0.7rem; padding: 8px 10px; }
         }
-        /* --- RESPONSIVE NAVBAR --- */
-@media (max-width: 480px) {
-    .navbar {
-        padding: 0 15px; /* Reduce el espacio a los lados en pantallas muy pequeñas */
-    }
-    
-    .logo-nav .main-title {
-        font-size: 0.95rem; /* Achica el título principal para que no se desborde */
-    }
-
-    .logo-nav .sub-title {
-        font-size: 0.65rem; /* Achica el subtítulo en consonancia */
-        letter-spacing: 1px; /* Reduce un poco el espaciado entre letras */
-    }
-    
-    .menu-btn {
-        width: 30px; /* Hace el botón de menú ligeramente más pequeño */
-        height: 22px;
-    }
-}
-        /* --- ESTILO BASE DEL BANNER INFERIOR --- */
-.banner-fijo {
-    background-color: var(--granate); 
-    color: var(--dorado); 
-    font-weight: bold; 
-    padding: 12px; 
-    position: fixed; 
-    bottom: 0; 
-    left: 0; 
-    width: 100%; 
-    z-index: 1000; 
-    text-align: center; 
-    box-sizing: border-box; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    word-break: break-word;
-    font-size: 0.95rem;
-}
-
-/* --- RESPONSIVE PARA EL BANNER (PANTALLAS PEQUEÑAS) --- */
-@media (max-width: 480px) {
-    .banner-fijo {
-        padding: 6px 10px; /* Se vuelve mucho más estrecho */
-        font-size: 0.75rem;  /* Letra más pequeña para que no genere demasiadas líneas */
-    }
-}
     </style>
 </head>
 <body>
@@ -313,35 +404,40 @@
     <div class="overlay" id="overlay"></div>
     <div class="sidebar" id="sidebar">
         <a href="index.html">Inicio</a>
-        <div style="padding: 18px 40px 5px; color: var(--dorado); font-size: 0.8rem; letter-spacing: 2px;">HISTORIA</div>
-        <a href="HISTORIA VIRGEN DE LA AMARGURA.html">• La Virgen</a>
-        <a href="HISTORIA DE LA BANDA.html">• La Banda</a>
-        <a href="HISTORIA A.M.C. SAN MIGUEL.html">• San Miguel</a>
+
+        <div class="sidebar-section-label">HISTORIA</div>
+        <a href="HISTORIA VIRGEN DE LA AMARGURA.html">La Virgen</a>
+        <a href="HISTORIA DE LA BANDA.html">La Banda</a>
+        <a href="HISTORIA A.M.C. SAN MIGUEL.html">San Miguel</a>
+
+        <div class="sidebar-section-label">AGRUPACIÓN</div>
         <a href="REPERTORIO.html">Música</a>
         <a href="COMPONENTES.html">Componentes</a>
         <a href="UNIFORMIDAD.html">Uniformidad</a>
         <a href="ACTUACIONES.html">Actuaciones</a>
+        <a href="VIDEOTECA.html">Vídeos de marchas</a>
+
+        <div class="sidebar-section-label">SECRETARÍA</div>
         <a href="CONTACTO.html">Contacto</a>
         <a href="REDES.html">Redes sociales</a>
-        <a href="VIDEOTECA.html">Vídeos de marchas</a>
     </div>
 
     <header class="hero-uniforme">
-        <h1>NUESTRO UNIFORME</h1>
+        <h1>Nuestro Uniforme</h1>
     </header>
 
     <div class="content-wrap">
         <p class="intro-uniforme">
-            "Portar nuestro uniforme es llevar con nosotros la historia y el respeto que nuestra ciudad merece."
+            «Portar nuestro uniforme es llevar con nosotros la historia y el respeto que nuestra ciudad merece.»
         </p>
 
         <div class="seccion-uniforme">
             <h2>Uniforme de Gala</h2>
-            
+
             <div class="grid-gala">
                 <div class="foto-uniforme-box">
                     <img src="WhatsApp Image 2026-03-03 at 14.43.23.jpeg" alt="Uniforme de Gala de la Agrupación">
-                    <p style="font-size: 0.8rem; color: #888; margin-top: 10px;">Uniforme de Gala Completo</p>
+                    <p>Uniforme de Gala Completo</p>
                 </div>
 
                 <div class="especificaciones">
@@ -364,25 +460,25 @@
                 </div>
             </div>
 
-            <div class="descripcion-larga"  style="border-top-color: var(--dorado);">
+            <div class="descripcion-larga" style="border-top-color: var(--dorado);">
                 <p>El uniforme principal de la Agrupación se compone de <strong>guerrera azul marino</strong> y pantalón del mismo color con doble franja roja lateral, inspirado en la elegancia de la Infantería de Marina.</p>
-                <p>La guerrera, de cuello cerrado, se ajusta al protocolo más estricto de las grandes ocasiones, destacando los bordados que representan el brillo de nuestra música. Se completa con un vistoso <strong>fajín rojo</strong> y la característica <strong>gorra de plato blanca</strong> con visera negra y barboquejo dorado.</p>
-                <p>La identidad queda reafirmada con el <strong>Escudo de la Agrupación Musical</strong> presente en la galleta de la gorra y en las hombreras de la guerrera, simbolizando nuestra vinculación eterna con la Virgen de la Amargura.</p>
+                <p>La guerrera, de cuello cerrado, se ajusta al protocolo más estricto de las grandes ocasiones, destacando los bordados que representan el brillo de nuestra música. Se completa con un <strong>fajín rojo</strong> y la característica <strong>gorra de plato blanca</strong> con visera negra y barboquejo dorado.</p>
+                <p>La identidad queda reafirmada con el <strong>Escudo de la Agrupación Musical</strong> presente en la galleta de la gorra y en las hombreras de la guerrera, simbolizando nuestra vinculación con la Virgen de la Amargura.</p>
             </div>
         </div>
 
         <div class="seccion-uniforme">
             <h2>Uniforme de Verano</h2>
-            
+
             <div class="grid-verano">
                 <div class="fotos-verano-container">
                     <div class="foto-uniforme-box">
                         <img src="WhatsApp Image 2026-05-20 at 15.49.55.jpeg" alt="Uniforme de Verano con gorra">
-                        <p style="font-size: 0.8rem; color: #888; margin-top: 10px;">Modalidad con Gorra de Plato</p>
+                        <p>Modalidad con Gorra de Plato</p>
                     </div>
                     <div class="foto-uniforme-box">
                         <img src="WhatsApp Image 2026-05-20 at 15.44.57.jpeg" alt="Uniforme de Verano sin gorra">
-                        <p style="font-size: 0.8rem; color: #888; margin-top: 10px;">Modalidad sin Gorra</p>
+                        <p>Modalidad sin Gorra</p>
                     </div>
                 </div>
 
@@ -410,14 +506,16 @@
         </div>
 
         <div class="galas-instrumento">
-            <strong style="color: var(--azul-marino); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Ornamentación de Instrumentos</strong>
-            <p style="margin-top: 10px; font-size: 0.95rem;">Actualmente, se ha renovado la sección de percusión con baquetas nuevas y nuevos <strong>redoblantes NP Sayón Pasión del Sur</strong>, decorados con aros personalizados que reafirman la identidad de nuestra Agrupación Musical, y dos <strong>bombos NP</strong> que completan nuestra batería.</p>
+            <strong>Ornamentación de Instrumentos</strong>
+            <p>Actualmente, se ha renovado la sección de percusión con baquetas nuevas y nuevos <strong>redoblantes NP Sayón Pasión del Sur</strong>, decorados con aros personalizados que reafirman la identidad de nuestra Agrupación Musical, y dos <strong>bombos NP</strong> que completan nuestra batería.</p>
         </div>
     </div>
-<!-- Reemplaza la etiqueta del final por esta más limpia -->
-<div class="banner-fijo"> 
-    ¡Próximas actuaciones! No os las perdáis - Santander - Agrupación Musical Virgen de la Amargura de Santander
-</div>    <script>
+
+    <div class="banner-fijo">
+        Agrupación Musical Virgen de la Amargura · Banda Decana de Santander
+    </div>
+
+    <script>
         const menuBtn = document.getElementById('menuBtn');
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('overlay');
