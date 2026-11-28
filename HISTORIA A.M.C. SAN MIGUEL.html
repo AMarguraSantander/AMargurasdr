@@ -3,139 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fernando Vitienes - Perfil de Honor - A.M. Amargura</title>
-    <link rel="icon" type="image/png" href="escudo.png">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
-
+    <title>A.M.C. San Miguel - A.M. Amargura</title>
+        <link rel="icon" type="image/png" href="escudo.png">
     <style>
         :root {
-            --granate: #5c0a14;
-            --granate-oscuro: #3d060d;
-            --dorado: #b89758;
-            --dorado-claro: #d4bc8b;
-            --negro: #141414;
-            --crema: #f7f5f0;
+            --granate: #800000;
+            --dorado: #d4af37;
+            --negro: #1a1a1a;
             --blanco: #ffffff;
-            --borde-sutil: #e2dcd0;
-            --texto: #242424;
-            --texto-secundario: #55524d;
+            --crema: #fdfaf5;
+            --texto: #2c2c2c;
         }
 
         body {
             margin: 0;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             background-color: var(--crema);
             color: var(--texto);
-            line-height: 1.8;
-            overflow-x: hidden;
-        }
-
-        h1, h2, .main-title, .infobox-header, .dropcap::first-letter {
-            font-family: 'Cinzel', Georgia, serif;
+            line-height: 1.6;
         }
 
         /* --- NAVBAR --- */
         .navbar {
             background-color: var(--granate);
-            height: 82px;
+            height: 75px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 40px;
+            padding: 0 25px;
             position: sticky;
             top: 0;
             z-index: 2000;
-            border-bottom: 2px solid var(--dorado);
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
-        .logo-nav {
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .logo-nav .main-title {
-            color: var(--blanco);
-            font-weight: 600;
-            font-size: 1.25rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .logo-nav .sub-title {
-            color: var(--dorado-claro);
-            font-size: 0.72rem;
-            letter-spacing: 4px;
-            margin-top: 2px;
-            font-weight: 500;
-        }
+        .logo-nav { text-decoration: none; display: flex; flex-direction: column; }
+        .logo-nav .main-title { color: white; font-weight: bold; font-size: 1.2rem; text-transform: uppercase; }
+        .logo-nav .sub-title { color: var(--dorado); font-size: 0.75rem; letter-spacing: 2px; }
 
         .menu-btn {
-            width: 32px;
-            height: 22px;
+            width: 35px;
+            height: 25px;
             cursor: pointer;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             z-index: 3001;
         }
-
-        .menu-btn span {
-            display: block;
-            height: 2px;
-            width: 100%;
-            background: var(--dorado-claro);
-            transition: 0.3s ease;
-        }
+        .menu-btn span { display: block; height: 3px; width: 100%; background: white; border-radius: 3px; }
 
         /* SIDEBAR */
-        .sidebar {
+  .sidebar {
             position: fixed;
             top: 0;
             right: -100%;
-            width: 310px;
+            width: 300px;
             height: 100vh;
-            background: var(--negro);
-            border-left: 1px solid var(--dorado);
+            background: #111;
             z-index: 2500;
-            transition: 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: 0.5s ease;
             display: flex;
             flex-direction: column;
-            padding-top: 95px;
-            overflow-y: auto;
+            padding-top: 100px;
         }
 
         .sidebar.active { right: 0; }
 
-        .sidebar-section-label {
-            padding: 20px 40px 6px;
-            color: var(--dorado);
-            font-size: 0.72rem;
-            letter-spacing: 3px;
-            font-weight: 600;
-            border-top: 1px solid rgba(184, 151, 88, 0.15);
-            margin-top: 10px;
-        }
-
         .sidebar a {
-            color: #d8d4cc;
+            color: #ddd;
             text-decoration: none;
-            padding: 13px 40px;
-            font-size: 0.88rem;
+            padding: 15px 40px;
+            font-size: 1rem;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-weight: 500;
+            font-weight: bold;
             border-left: 3px solid transparent;
-            transition: all 0.25s ease;
         }
 
         .sidebar a:hover {
-            color: var(--dorado-claro);
-            background: rgba(184, 151, 88, 0.08);
+            color: var(--dorado);
+            background: rgba(255,255,255,0.05);
             border-left: 3px solid var(--dorado);
         }
 
@@ -145,248 +91,169 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(10, 10, 10, 0.65);
-            backdrop-filter: blur(2px);
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
             display: none;
             z-index: 2400;
         }
 
         .overlay.active { display: block; }
-
-        /* --- CONTENEDOR HOMENAJE --- */
-        .homenaje-wrapper {
-            max-width: 1120px;
-            margin: 50px auto 30px;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: 1fr 340px;
-            gap: 38px;
-            box-sizing: border-box;
-        }
-
-        /* BIOGRAFÍA (LADO IZQUIERDO) */
-        .bio-article {
-            background: var(--blanco);
-            padding: 48px 50px;
-            border-radius: 3px;
-            border: 1px solid var(--borde-sutil);
-            border-left: 5px solid var(--granate);
-            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
-        }
-
-        .bio-article h1 {
-            font-size: 2.35rem;
-            font-weight: 600;
-            color: var(--granate);
-            margin: 0 0 12px 0;
-            padding-bottom: 14px;
-            border-bottom: 1px solid var(--borde-sutil);
-            line-height: 1.25;
-            letter-spacing: 1px;
-        }
-
-        .bio-motto {
-            font-family: 'Lora', Georgia, serif;
-            font-style: italic;
-            color: var(--texto-secundario);
-            font-size: 1.12rem;
-            margin-bottom: 32px;
-            display: block;
-            line-height: 1.65;
-        }
-
-        .bio-article h2 {
-            color: var(--granate);
-            border-bottom: 1px solid var(--dorado);
-            display: inline-block;
-            text-transform: uppercase;
-            font-size: 1.15rem;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            margin-top: 36px;
-            margin-bottom: 14px;
-            padding-bottom: 6px;
-        }
-
-        .bio-article p {
-            color: var(--texto-secundario);
-            font-size: 0.96rem;
-            text-align: justify;
-            margin-top: 0;
-            margin-bottom: 18px;
-        }
-
-        .dropcap::first-letter {
-            font-size: 3.4rem;
-            float: left;
-            padding: 8px 14px;
-            margin-right: 15px;
-            margin-top: 4px;
-            background: var(--granate);
-            color: var(--dorado-claro);
-            border: 1px solid var(--dorado);
-            line-height: 1;
-            font-weight: 600;
-            border-radius: 2px;
-        }
-
-        /* FICHA TÉCNICA (INFOBOX) */
-        .infobox {
-            background: var(--blanco);
-            border: 1px solid var(--borde-sutil);
-            border-top: 3px solid var(--granate);
-            padding: 20px;
-            border-radius: 3px;
-            box-shadow: 0 6px 22px rgba(0, 0, 0, 0.05);
-            height: fit-content;
-        }
-
-        .infobox-header {
-            background: var(--granate);
-            color: var(--dorado-claro);
-            border: 1px solid var(--dorado);
-            text-align: center;
-            padding: 10px 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.95rem;
-        }
-
-        .infobox-img {
-            width: 100%;
-            box-sizing: border-box;
-            margin: 16px 0;
-            padding: 4px;
-            background: var(--crema);
-            border: 1px solid var(--borde-sutil);
-            display: block;
-        }
-
-        .infobox table {
-            width: 100%;
-            font-size: 0.85rem;
-            border-collapse: collapse;
-        }
-
-        .infobox th {
-            text-align: left;
-            padding: 9px 6px;
-            border-bottom: 1px solid #eee9df;
-            width: 42%;
-            color: var(--granate);
-            font-weight: 600;
-            vertical-align: top;
-        }
-
-        .infobox td {
-            padding: 9px 6px;
-            border-bottom: 1px solid #eee9df;
-            color: var(--texto-secundario);
-        }
-
-        .infobox-badge-footer {
-            background: var(--negro);
-            color: var(--dorado-claro);
-            border: 1px solid var(--dorado);
-            margin-top: 16px;
-            padding: 10px 12px;
-            font-size: 0.74rem;
-            letter-spacing: 2px;
-            text-align: center;
-            font-weight: 600;
-            text-transform: uppercase;
-            border-radius: 2px;
-        }
-
-        /* SECCIÓN GALARDONES */
-        .awards {
+        /* --- SECCIÓN HERO --- */
+        .hero-sm {
+            height: 50vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('WhatsApp Image 2026-03-05 at 16.20.18.jpeg');
+            background-size: cover;
+            background-position: center;
             display: flex;
-            gap: 16px;
-            margin-top: 32px;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
         }
 
-        .award-item {
-            flex: 1;
+        .hero-sm h1 {
+            font-size: 2.8rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            border-bottom: 3px solid var(--dorado);
+            padding-bottom: 10px;
+        }
+
+        /* --- CONTENIDO --- */
+        .container {
+            max-width: 900px;
+            margin: -50px auto 60px;
+            padding: 0 20px;
+        }
+
+        .card-info {
+            background: var(--blanco);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-top: 5px solid var(--granate);
+        }
+
+        .intro-text {
+            font-size: 1.2rem;
+            color: var(--granate);
+            font-weight: 600;
             text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .detail-item {
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            border-left: 4px solid var(--dorado);
+        }
+
+        .detail-item h3 {
+            margin-top: 0;
+            color: var(--negro);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+        .highlight-box {
             background: var(--negro);
-            color: var(--dorado-claro);
-            padding: 18px 14px;
-            border-radius: 3px;
-            border: 1px solid var(--dorado);
-            font-size: 0.8rem;
-            font-weight: 500;
-            letter-spacing: 0.8px;
-            line-height: 1.5;
-        }
-
-        .award-item span {
-            font-family: 'Cinzel', Georgia, serif;
-            font-size: 0.7rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--blanco);
-            display: block;
-            margin-bottom: 6px;
-            padding-bottom: 6px;
-            border-bottom: 1px solid rgba(184, 151, 88, 0.35);
-        }
-
-        /* FOOTER */
-        .homenaje-footer {
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
             text-align: center;
-            padding: 45px 20px 75px;
-            color: var(--texto-secundario);
-            font-size: 0.82rem;
-            letter-spacing: 1px;
-            border-top: 1px solid var(--borde-sutil);
-            margin-top: 50px;
+            position: relative;
         }
 
-        .homenaje-footer p {
-            margin: 5px 0;
+        .highlight-box h2 {
+            color: var(--dorado);
+            margin-top: 0;
         }
 
-        /* --- BANNER INFERIOR --- */
-        .banner-fijo {
-            background-color: var(--granate-oscuro);
-            color: var(--dorado-claro);
-            border-top: 1px solid var(--dorado);
-            font-weight: 500;
-            letter-spacing: 1.2px;
-            padding: 10px 16px;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            text-align: center;
-            box-sizing: border-box;
-            font-size: 0.82rem;
-            text-transform: uppercase;
+        .btn-colabora {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: var(--dorado);
+            color: var(--negro);
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: 0.3s;
         }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 900px) {
-            .homenaje-wrapper { grid-template-columns: 1fr; }
-            .bio-article { padding: 32px 26px; }
-            .bio-article h1 { font-size: 1.95rem; }
-            .infobox { order: -1; margin-bottom: 10px; }
+        .btn-colabora:hover {
+            transform: scale(1.05);
+            background: var(--blanco);
         }
 
         @media (max-width: 600px) {
-            .bio-article { padding: 24px 20px; }
-            .bio-article h1 { font-size: 1.65rem; }
-            .bio-article p { text-align: left; }
-            .awards { flex-direction: column; gap: 12px; }
+            .hero-sm h1 { font-size: 1.8rem; }
+            .card-info { padding: 25px; }
         }
+                footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid #222;
+            color: #555;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+        /* --- RESPONSIVE NAVBAR --- */
+@media (max-width: 480px) {
+    .navbar {
+        padding: 0 15px; /* Reduce el espacio a los lados en pantallas muy pequeñas */
+    }
+    
+    .logo-nav .main-title {
+        font-size: 0.95rem; /* Achica el título principal para que no se desborde */
+    }
 
-        @media (max-width: 480px) {
-            .navbar { padding: 0 18px; height: 74px; }
-            .logo-nav .main-title { font-size: 0.95rem; letter-spacing: 1px; }
-            .logo-nav .sub-title { font-size: 0.65rem; letter-spacing: 2px; }
-            .banner-fijo { font-size: 0.7rem; padding: 8px 10px; }
-        }
+    .logo-nav .sub-title {
+        font-size: 0.65rem; /* Achica el subtítulo en consonancia */
+        letter-spacing: 1px; /* Reduce un poco el espaciado entre letras */
+    }
+    
+    .menu-btn {
+        width: 30px; /* Hace el botón de menú ligeramente más pequeño */
+        height: 22px;
+    }
+}
+        /* --- ESTILO BASE DEL BANNER INFERIOR --- */
+.banner-fijo {
+    background-color: var(--granate); 
+    color: var(--dorado); 
+    font-weight: bold; 
+    padding: 12px; 
+    position: fixed; 
+    bottom: 0; 
+    left: 0; 
+    width: 100%; 
+    z-index: 1000; 
+    text-align: center; 
+    box-sizing: border-box; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    word-break: break-word;
+    font-size: 0.95rem;
+}
+
+/* --- RESPONSIVE PARA EL BANNER (PANTALLAS PEQUEÑAS) --- */
+@media (max-width: 480px) {
+    .banner-fijo {
+        padding: 6px 10px; /* Se vuelve mucho más estrecho */
+        font-size: 0.75rem;  /* Letra más pequeña para que no genere demasiadas líneas */
+    }
+}
     </style>
 </head>
 <body>
@@ -406,115 +273,53 @@
     <div class="overlay" id="overlay"></div>
     <div class="sidebar" id="sidebar">
         <a href="index.html">Inicio</a>
-
-        <div class="sidebar-section-label">HISTORIA</div>
-        <a href="HISTORIA VIRGEN DE LA AMARGURA.html">La Virgen</a>
-        <a href="HISTORIA DE LA BANDA.html">La Banda</a>
-        <a href="HISTORIA A.M.C. SAN MIGUEL.html">San Miguel</a>
-
-        <div class="sidebar-section-label">AGRUPACIÓN</div>
+        <div style="padding: 18px 40px 5px; color: var(--dorado); font-size: 0.8rem; letter-spacing: 2px;">HISTORIA</div>
+        <a href="HISTORIA VIRGEN DE LA AMARGURA.html">• La Virgen</a>
+        <a href="HISTORIA DE LA BANDA.html">• La Banda</a>
+        <a href="HISTORIA A.M.C. SAN MIGUEL.html">• San Miguel</a>
         <a href="REPERTORIO.html">Música</a>
         <a href="COMPONENTES.html">Componentes</a>
         <a href="UNIFORMIDAD.html">Uniformidad</a>
         <a href="ACTUACIONES.html">Actuaciones</a>
-        <a href="VIDEOTECA.html">Vídeos de marchas</a>
-
-        <div class="sidebar-section-label">SECRETARÍA</div>
         <a href="CONTACTO.html">Contacto</a>
         <a href="REDES.html">Redes sociales</a>
+        <a href="VIDEOTECA.html">Vídeos de marchas</a>
     </div>
 
-    <div class="homenaje-wrapper">
+    <header class="hero-sm">
+        <h1>A.M.C. San Miguel</h1>
+    </header>
 
-        <article class="bio-article">
-            <h1>Fernando Vitienes Santana</h1>
-            <span class="bio-motto">«La música no se toca, se siente; y el sentimiento nace en la Amargura.»</span>
+    <div class="container">
+        <div class="card-info">
+            <p class="intro-text">LA CARA MÁS ALEGRE Y DINÁMICA DE NUESTRA FORMACIÓN</p>
+            
+            <p style="font-size: 1.3rem;">La <strong>Asociación Musical Cultural San Miguel</strong> está especializada en el "paso ligero". Su música recorre las calles en cabalgatas, dianas y festejos populares, llevando la tradición a todos los rincones con una energía inconfundible.</p>
 
-            <p class="dropcap">Fernando Vitienes Santana es una figura capital e insustituible en la historia de la música procesional de Santander. Como Director General de la Agrupación Musical Stma. Virgen de la Amargura, ha dedicado más de media vida a la custodia, evolución y perfeccionamiento de un estilo propio que define la identidad sonora de nuestra ciudad.</p>
-
-            <h2>Trayectoria y Liderazgo</h2>
-            <p>Fernando Vitienes Santana ha sabido consolidar su labor al frente de la Agrupación Musical Virgen de la Amargura de Santander desde una visión que combina tradición, rigor y evolución artística. Desde sus inicios ha entendido que una banda no se limita a la ejecución musical, sino que funciona como una estructura cohesionada donde la disciplina, la escucha mutua y el compromiso colectivo son esenciales para alcanzar un nivel interpretativo sólido.</p>
-
-            <p>A lo largo de su dirección, ha impulsado un trabajo constante de mejora técnica en todos los sectores de la agrupación, prestando especial atención a la afinación, la coordinación rítmica y la uniformidad en la interpretación. Este enfoque meticuloso en los ensayos ha permitido que la banda evolucione hacia un sonido más compacto y equilibrado, capaz de responder con solvencia tanto en repertorios procesionales tradicionales como en obras de mayor exigencia musical. Además, su liderazgo no se limita al plano estrictamente musical, sino que refuerza la identidad y cohesión del grupo: la exigencia que caracteriza su método convive con una clara apuesta por el crecimiento personal de los integrantes, fomentando el sentido de pertenencia y el respeto por la tradición cofrade y musical.</p>
-
-            <p>El resultado de este trabajo se refleja en la presencia de la banda en la calle, donde la solidez interpretativa y la puesta en escena transmiten una imagen cuidada, seria y reconocible dentro del panorama de las agrupaciones musicales.</p>
-
-            <h2>Legado Musical</h2>
-            <p>Se le atribuye la modernización del repertorio de la banda, equilibrando las marchas clásicas con nuevas armonías que exigen el máximo de cada componente. Su oído privilegiado, su capacidad para detectar el matiz exacto y su profundo conocimiento de cada instrumento han sido pilares fundamentales para que nuestra banda siga siendo la decana y el orgullo de nuestra ciudad.</p>
-
-            <div class="awards">
-                <div class="award-item">
-                    <span>Distinción</span>
-                    Medalla de Oro al Mérito de la Banda
+            <div class="details-grid">
+                <div class="detail-item">
+                    <h3>Versatilidad Musical</h3>
+                    <p style="font-size: 1.3rem;">Repertorio variado que incluye desde éxitos populares hasta composiciones infantiles.</p>
                 </div>
-                <div class="award-item">
-                    <span>Dedicación</span>
-                    +30 años al servicio de la Música
+                <div class="detail-item">
+                    <h3>Marco Legal</h3>
+                    <p style="font-size: 1.3rem;">Fundada en 2017, dota a la Agrupación de personalidad jurídica y estructura administrativa.</p>
                 </div>
-                <div class="award-item">
-                    <span>Legado</span>
-                    Patrimonio Vivo de la Amargura
+                <div class="detail-item">
+                    <h3>Presencia Regional</h3>
+                    <p style="font-size: 1.3rem;">Participamos activamente en eventos lúdicos, sociales y festivos en toda Cantabria.</p>
                 </div>
             </div>
 
-            <h2>Filosofía de Dirección</h2>
-            <p>Para Fernando, el uniforme es una piel y el instrumento una voz para la fe. Este espacio sirve como homenaje a su entrega incansable, a las horas dedicadas al ensayo y a su firme compromiso con este proyecto cultural y religioso. Su exigencia en la preparación se manifiesta en la imponente presencia de la Agrupación en las calles de Santander.</p>
-        </article>
+            <p style="margin-top: 30px; font-size: 1.3rem;">Actualmente, la Asociación cuenta con <strong>más de 40 miembros</strong> que prestan un apoyo vital: no solo en lo musical, sino también en las áreas económica, administrativa y logística, asegurando el futuro de nuestro proyecto cultural.</p>
 
-        <aside class="infobox">
-            <div class="infobox-header">Ficha del Director</div>
-            <img src="WhatsApp Imagen 2026-03-03 at 14.43.51.jpeg" alt="Fernando Vitienes" class="infobox-img">
-
-            <table>
-                <tr>
-                    <th>Nombre</th>
-                    <td>Fernando Vitienes Santana</td>
-                </tr>
-                <tr>
-                    <th>Cargo</th>
-                    <td><strong>Director General</strong></td>
-                </tr>
-                <tr>
-                    <th>Formación a dirigir</th>
-                    <td>A.M. Virgen de la Amargura</td>
-                </tr>
-                <tr>
-                    <th>Especialidad</th>
-                    <td>Dirección Técnica / Viento y percusión</td>
-                </tr>
-                <tr>
-                    <th>Estilo</th>
-                    <td>Agrupación Musical</td>
-                </tr>
-                <tr>
-                    <th>Instrumento</th>
-                    <td>Corneta española Tizona Do/SiB</td>
-                </tr>
-                <tr>
-                    <th>Filosofía</th>
-                    <td>Rigor y Sentimiento</td>
-                </tr>
-                <tr>
-                    <th>Antigüedad</th>
-                    <td>Dirección de la banda desde 2018</td>
-                </tr>
-            </table>
-
-            <div class="infobox-badge-footer">
-                Máxima Distinción de la Agrupación
+            <div class="highlight-box">
+                <h2>¿Quieres formar parte?</h2>
+                <p style="font-size: 1.3rem;">Si quieres colaborar con nuestro proyecto cultural y musical, te animamos a unirte a nuestra entidad.</p>
+                <a href="CONTACTO.html" class="btn-colabora">SOLICITAR INFORMACIÓN</a>
             </div>
-        </aside>
-
+        </div>
     </div>
-
-    <div class="banner-fijo">
-        Agrupación Musical Virgen de la Amargura · Banda Decana de Santander
-    </div>
-
-    <footer class="homenaje-footer">
-        <p>Homenaje oficial de la Agrupación Musical Stma. Virgen de la Amargura · Santander</p>
-        <p>A.M. VIRGEN DE LA AMARGURA · SANTANDER</p>
-    </footer>
 
     <script>
         const menuBtn = document.getElementById('menuBtn');
@@ -529,5 +334,8 @@
         menuBtn.addEventListener('click', toggleMenu);
         overlay.addEventListener('click', toggleMenu);
     </script>
-</body>
+<!-- Reemplaza la etiqueta del final por esta más limpia -->
+<div class="banner-fijo"> 
+    ¡Próximas actuaciones! No os las perdáis - Santander - Agrupación Musical Virgen de la Amargura de Santander
+</div>
 </html>
