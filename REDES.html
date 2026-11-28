@@ -5,92 +5,138 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redes Sociales - A.M. Amargura</title>
     <link rel="icon" type="image/png" href="escudo.png">
-    
-    <!-- CDN de Font Awesome para iconos reales de alta calidad -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <style>
         :root {
-            --granate: #800000;
-            --dorado: #d4af37;
-            --negro: #1a1a1a;
-            --crema: #fdfaf5;
+            --granate: #5c0a14;
+            --granate-oscuro: #3d060d;
+            --dorado: #b89758;
+            --dorado-claro: #d4bc8b;
+            --negro: #141414;
+            --crema: #f7f5f0;
             --blanco: #ffffff;
-            
-            /* Colores de marca de redes sociales */
-            --facebook: #1877F2;
-            --twitter: #000000; /* Actualizado al negro de X */
-            --instagram: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            --youtube: #FF0000;
+            --borde-sutil: #e2dcd0;
+            --texto: #242424;
+            --texto-secundario: #55524d;
         }
 
         body {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Montserrat', sans-serif;
             background-color: var(--crema);
-            color: var(--negro);
+            color: var(--texto);
             overflow-x: hidden;
+            line-height: 1.75;
+        }
+
+        h1, h2, h3, .main-title {
+            font-family: 'Cinzel', Georgia, serif;
         }
 
         /* --- NAVBAR --- */
         .navbar {
             background-color: var(--granate);
-            height: 75px;
+            height: 82px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 25px;
+            padding: 0 40px;
             position: sticky;
             top: 0;
             z-index: 2000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-bottom: 2px solid var(--dorado);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
         }
 
-        .logo-nav { text-decoration: none; display: flex; flex-direction: column; }
-        .logo-nav .main-title { color: white; font-weight: bold; font-size: 1.2rem; text-transform: uppercase; }
-        .logo-nav .sub-title { color: var(--dorado); font-size: 0.75rem; letter-spacing: 2px; }
+        .logo-nav {
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-nav .main-title {
+            color: var(--blanco);
+            font-weight: 600;
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo-nav .sub-title {
+            color: var(--dorado-claro);
+            font-size: 0.72rem;
+            letter-spacing: 4px;
+            margin-top: 2px;
+            font-weight: 500;
+        }
 
         .menu-btn {
-            width: 35px;
-            height: 25px;
+            width: 32px;
+            height: 22px;
             cursor: pointer;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             z-index: 3001;
         }
-        .menu-btn span { display: block; height: 3px; width: 100%; background: white; border-radius: 3px; }
+
+        .menu-btn span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background: var(--dorado-claro);
+            transition: 0.3s ease;
+        }
 
         /* SIDEBAR */
         .sidebar {
             position: fixed;
             top: 0;
             right: -100%;
-            width: 300px;
+            width: 310px;
             height: 100vh;
-            background: #111;
+            background: var(--negro);
+            border-left: 1px solid var(--dorado);
             z-index: 2500;
-            transition: 0.5s ease;
+            transition: 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
             display: flex;
             flex-direction: column;
-            padding-top: 100px;
+            padding-top: 95px;
+            overflow-y: auto;
         }
 
         .sidebar.active { right: 0; }
 
+        .sidebar-section-label {
+            padding: 20px 40px 6px;
+            color: var(--dorado);
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            font-weight: 600;
+            border-top: 1px solid rgba(184, 151, 88, 0.15);
+            margin-top: 10px;
+        }
+
         .sidebar a {
-            color: #ddd;
+            color: #d8d4cc;
             text-decoration: none;
-            padding: 15px 40px;
-            font-size: 1rem;
+            padding: 13px 40px;
+            font-size: 0.88rem;
             text-transform: uppercase;
-            font-weight: bold;
+            letter-spacing: 1.5px;
+            font-weight: 500;
             border-left: 3px solid transparent;
+            transition: all 0.25s ease;
         }
 
         .sidebar a:hover {
-            color: var(--dorado);
-            background: rgba(255,255,255,0.05);
+            color: var(--dorado-claro);
+            background: rgba(184, 151, 88, 0.08);
             border-left: 3px solid var(--dorado);
         }
 
@@ -100,24 +146,25 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(4px);
+            background: rgba(10, 10, 10, 0.65);
+            backdrop-filter: blur(2px);
             display: none;
             z-index: 2400;
         }
 
         .overlay.active { display: block; }
-        
-        /* --- CONTENEDOR HERO --- */
+
+        /* --- HERO --- */
         .hero-container {
             position: relative;
             width: 100%;
-            height: 500px;
+            height: 460px;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
             background-color: var(--negro);
+            border-bottom: 2px solid var(--dorado);
         }
 
         .hero-image {
@@ -126,14 +173,16 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('WhatsApp Image 2026-05-20 at 11.58.40.jpeg'); 
+            background:
+                linear-gradient(rgba(15, 10, 11, 0.62), rgba(20, 14, 15, 0.76)),
+                url('WhatsApp Image 2026-05-20 at 11.58.40.jpeg');
             background-size: cover;
             background-position: center;
-            transition: transform 8s ease;
+            transition: transform 6s ease;
         }
 
         .hero-container:hover .hero-image {
-            transform: scale(1.1);
+            transform: scale(1.04);
         }
 
         .hero-overlay-text {
@@ -141,202 +190,192 @@
             z-index: 10;
             text-align: center;
             color: var(--blanco);
-            border: 2px solid var(--dorado);
-            padding: 40px 60px;
-            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--dorado);
+            outline: 1px solid rgba(212, 188, 139, 0.3);
+            outline-offset: -7px;
+            padding: 36px 54px;
+            background: rgba(18, 12, 13, 0.82);
+            border-radius: 3px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
         }
 
         .hero-overlay-text h2 {
-            font-size: 2.5rem;
+            font-size: 2.3rem;
+            font-weight: 600;
             margin: 0;
             text-transform: uppercase;
-            letter-spacing: 6px;
-            color: var(--dorado);
+            letter-spacing: 5px;
+            color: var(--dorado-claro);
         }
 
         .hero-overlay-text p {
-            font-size: 1.1rem;
-            margin-top: 10px;
+            font-family: 'Lora', Georgia, serif;
+            font-size: 1.05rem;
+            margin: 12px 0 0;
             font-style: italic;
             letter-spacing: 1px;
+            color: #e6e2d8;
         }
 
-        /* --- SECCIÓN REDES MEJORADA --- */
+        /* --- SECCIÓN REDES --- */
         .social-container {
-            max-width: 1100px;
-            margin: 60px auto 100px;
-            padding: 0 20px;
+            max-width: 1120px;
+            margin: 60px auto 95px;
+            padding: 0 24px;
             text-align: center;
+            box-sizing: border-box;
         }
 
         .social-container h1 {
             color: var(--granate);
             text-transform: uppercase;
             letter-spacing: 3px;
-            margin-bottom: 10px;
-            font-size: 2.2rem;
+            font-weight: 600;
+            margin: 0 0 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--dorado);
+            display: inline-block;
+            font-size: 2.1rem;
         }
 
-        .social-container p {
-            color: #666;
-            margin-bottom: 50px;
-            font-size: 1.1rem;
+        .social-container > p {
+            color: var(--texto-secundario);
+            margin: 16px auto 46px;
+            max-width: 640px;
+            font-size: 0.98rem;
         }
 
         .social-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+            gap: 26px;
         }
 
         .social-card {
             background: var(--blanco);
-            padding: 40px 25px 30px;
-            border-radius: 24px;
+            padding: 36px 24px 28px;
+            border-radius: 3px;
             text-decoration: none;
-            color: var(--negro);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.04);
-            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-            border: 1px solid #eaeaea;
+            color: var(--texto);
+            border: 1px solid var(--borde-sutil);
+            border-top: 3px solid var(--granate);
+            box-shadow: 0 6px 22px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
             align-items: center;
-            position: relative;
-            overflow: hidden;
+            box-sizing: border-box;
         }
 
         .icon-box {
-            width: 80px;
-            height: 80px;
+            width: 72px;
+            height: 72px;
             border-radius: 50%;
-            background: #fff6f6;
+            background: var(--crema);
+            border: 1px solid var(--dorado);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
-            font-size: 2.2rem;
+            margin-bottom: 18px;
+            font-size: 1.85rem;
             color: var(--granate);
-            transition: all 0.4s ease;
-            box-shadow: inset 0 0 0 1px rgba(128, 0, 0, 0.05);
-        }
-
-        .social-card h3 {
-            margin: 10px 0 5px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-size: 1.25rem;
-            transition: color 0.3s;
-        }
-
-        .social-card span {
-            font-size: 0.9rem;
-            color: #777;
-            margin-bottom: 25px;
-            transition: color 0.3s;
-        }
-
-        /* Botones de acción dentro de las tarjetas */
-        .social-btn {
-            padding: 10px 24px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            background: var(--crema);
-            color: var(--granate);
-            border: 1px solid rgba(128, 0, 0, 0.15);
             transition: all 0.3s ease;
         }
 
-        /* --- EFECTOS HOVER DINÁMICOS POR RED SOCIAL --- */
-        .social-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-            border-color: transparent;
+        .social-card h3 {
+            margin: 8px 0 6px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+            font-size: 1.15rem;
+            color: var(--granate);
+            transition: color 0.3s ease;
         }
 
-        .social-card:hover h3, 
+        .social-card span {
+            font-size: 0.86rem;
+            color: var(--texto-secundario);
+            margin-bottom: 24px;
+            line-height: 1.45;
+            transition: color 0.3s ease;
+        }
+
+        .social-btn {
+            padding: 10px 24px;
+            border-radius: 2px;
+            font-size: 0.76rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: var(--crema);
+            color: var(--granate);
+            border: 1px solid var(--dorado);
+            transition: all 0.3s ease;
+            margin-top: auto;
+        }
+
+        /* Hover institucional elegante con toque dorado/granate */
+        .social-card:hover {
+            transform: translateY(-5px);
+            background: var(--granate);
+            border-color: var(--dorado);
+            border-top-color: var(--dorado);
+            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.14);
+        }
+
+        .social-card:hover .icon-box {
+            background: var(--negro);
+            color: var(--dorado-claro);
+            border-color: var(--dorado-claro);
+        }
+
+        .social-card:hover h3 {
+            color: var(--dorado-claro);
+        }
+
         .social-card:hover span {
-            color: var(--blanco);
+            color: #e6e2d8;
         }
 
         .social-card:hover .social-btn {
-            background: var(--blanco);
-            border-color: var(--blanco);
+            background: var(--dorado);
+            color: var(--negro);
+            border-color: var(--dorado-claro);
         }
 
-        /* Facebook */
-        .fb:hover { background: var(--facebook); }
-        .fb:hover .icon-box { color: var(--facebook); background: var(--blanco); }
-        .fb:hover .social-btn { color: var(--facebook); }
-
-        /* X (Twitter) */
-        .tw:hover { background: var(--twitter); }
-        .tw:hover .icon-box { color: var(--twitter); background: var(--blanco); }
-        .tw:hover .social-btn { color: var(--twitter); }
-
-        /* Instagram */
-        .ig:hover { background: var(--instagram); }
-        .ig:hover .icon-box { color: #cc2366; background: var(--blanco); }
-        .ig:hover .social-btn { color: #cc2366; }
-
-        /* YouTube */
-        .yt:hover { background: var(--youtube); }
-        .yt:hover .icon-box { color: var(--youtube); background: var(--blanco); }
-        .yt:hover .social-btn { color: var(--youtube); }
-
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-container { height: 350px; }
-            .hero-overlay-text { padding: 15px; width: 70%; }
-            .hero-overlay-text h2 { font-size: 1.5rem; letter-spacing: 3px; }
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px;
-            border-top: 1px solid #eaeaea;
-            color: #555;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            background-color: var(--blanco);
-        }
-
-        @media (max-width: 480px) {
-            .navbar { padding: 0 15px; }
-            .logo-nav .main-title { font-size: 0.95rem; }
-            .logo-nav .sub-title { font-size: 0.65rem; letter-spacing: 1px; }
-            .menu-btn { width: 30px; height: 22px; }
-        }
-
-        /* --- ESTILO BASE DEL BANNER INFERIOR --- */
+        /* --- BANNER INFERIOR --- */
         .banner-fijo {
-            background-color: var(--granate); 
-            color: var(--dorado); 
-            font-weight: bold; 
-            padding: 12px; 
-            position: fixed; 
-            bottom: 0; 
-            left: 0; 
-            width: 100%; 
-            z-index: 1000; 
-            text-align: center; 
-            box-sizing: border-box; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            word-break: break-word;
-            font-size: 0.95rem;
-            box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+            background-color: var(--granate-oscuro);
+            color: var(--dorado-claro);
+            border-top: 1px solid var(--dorado);
+            font-weight: 500;
+            letter-spacing: 1.2px;
+            padding: 10px 16px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            text-align: center;
+            box-sizing: border-box;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero-container { height: 340px; }
+            .hero-overlay-text { padding: 24px 26px; width: 85%; box-sizing: border-box; }
+            .hero-overlay-text h2 { font-size: 1.55rem; letter-spacing: 3px; }
+            .social-container h1 { font-size: 1.65rem; }
         }
 
         @media (max-width: 480px) {
-            .banner-fijo {
-                padding: 8px 10px;
-                font-size: 0.75rem;  
-            }
+            .navbar { padding: 0 18px; height: 74px; }
+            .logo-nav .main-title { font-size: 0.95rem; letter-spacing: 1px; }
+            .logo-nav .sub-title { font-size: 0.65rem; letter-spacing: 2px; }
+            .hero-overlay-text h2 { font-size: 1.3rem; letter-spacing: 2px; }
+            .banner-fijo { font-size: 0.7rem; padding: 8px 10px; }
         }
     </style>
 </head>
@@ -357,20 +396,25 @@
     <div class="overlay" id="overlay"></div>
     <div class="sidebar" id="sidebar">
         <a href="index.html">Inicio</a>
-        <div style="padding: 18px 40px 5px; color: var(--dorado); font-size: 0.8rem; letter-spacing: 2px;">HISTORIA</div>
-        <a href="HISTORIA VIRGEN DE LA AMARGURA.html">• La Virgen</a>
-        <a href="HISTORIA DE LA BANDA.html">• La Banda</a>
-        <a href="HISTORIA A.M.C. SAN MIGUEL.html">• San Miguel</a>
+
+        <div class="sidebar-section-label">HISTORIA</div>
+        <a href="HISTORIA VIRGEN DE LA AMARGURA.html">La Virgen</a>
+        <a href="HISTORIA DE LA BANDA.html">La Banda</a>
+        <a href="HISTORIA A.M.C. SAN MIGUEL.html">San Miguel</a>
+
+        <div class="sidebar-section-label">AGRUPACIÓN</div>
         <a href="REPERTORIO.html">Música</a>
         <a href="COMPONENTES.html">Componentes</a>
         <a href="UNIFORMIDAD.html">Uniformidad</a>
         <a href="ACTUACIONES.html">Actuaciones</a>
+        <a href="VIDEOTECA.html">Vídeos de marchas</a>
+
+        <div class="sidebar-section-label">SECRETARÍA</div>
         <a href="CONTACTO.html">Contacto</a>
         <a href="REDES.html">Redes sociales</a>
-        <a href="VIDEOTECA.html">Vídeos de marchas</a>
     </div>
 
-    <!-- SECCIÓN HERO (IMAGEN GRANDE) -->
+    <!-- SECCIÓN HERO -->
     <div class="hero-container">
         <div class="hero-image"></div>
         <div class="hero-overlay-text">
@@ -379,14 +423,13 @@
         </div>
     </div>
 
-    <!-- SECCIÓN REDES SOCIALES MEJORADA -->
+    <!-- SECCIÓN REDES SOCIALES -->
     <div class="social-container">
         <h1>Conecta con nosotros</h1>
         <p>Sigue el día a día de nuestra formación a través de nuestros canales oficiales.</p>
 
         <div class="social-grid">
-            <!-- Facebook -->
-            <a href="https://www.facebook.com/amargurasdr" target="_blank" class="social-card fb">
+            <a href="https://www.facebook.com/amargurasdr" target="_blank" rel="noopener noreferrer" class="social-card">
                 <div class="icon-box">
                     <i class="fa-brands fa-facebook-f"></i>
                 </div>
@@ -395,8 +438,7 @@
                 <div class="social-btn">Seguir</div>
             </a>
 
-            <!-- X / Twitter -->
-            <a href="https://twitter.com/amargurasdr" target="_blank" class="social-card tw">
+            <a href="https://twitter.com/amargurasdr" target="_blank" rel="noopener noreferrer" class="social-card">
                 <div class="icon-box">
                     <i class="fa-brands fa-x-twitter"></i>
                 </div>
@@ -405,8 +447,7 @@
                 <div class="social-btn">Seguir</div>
             </a>
 
-            <!-- Instagram -->
-            <a href="https://www.instagram.com/amargurasdr" target="_blank" class="social-card ig">
+            <a href="https://www.instagram.com/amargurasdr" target="_blank" rel="noopener noreferrer" class="social-card">
                 <div class="icon-box">
                     <i class="fa-brands fa-instagram"></i>
                 </div>
@@ -415,8 +456,7 @@
                 <div class="social-btn">Perfil</div>
             </a>
 
-            <!-- YouTube -->
-            <a href="https://www.youtube.com/@AMarguraSDR" target="_blank" class="social-card yt">
+            <a href="https://www.youtube.com/@AMarguraSDR" target="_blank" rel="noopener noreferrer" class="social-card">
                 <div class="icon-box">
                     <i class="fa-brands fa-youtube"></i>
                 </div>
@@ -425,6 +465,10 @@
                 <div class="social-btn">Ver canal</div>
             </a>
         </div>
+    </div>
+
+    <div class="banner-fijo">
+        Agrupación Musical Virgen de la Amargura · Banda Decana de Santander
     </div>
 
     <script>
@@ -440,9 +484,5 @@
         menuBtn.addEventListener('click', toggleMenu);
         overlay.addEventListener('click', toggleMenu);
     </script>
-
-    <div class="banner-fijo"> 
-        ¡Próximas actuaciones! No os las perdáis - Santander - Agrupación Musical Virgen de la Amargura de Santander
-    </div>
 </body>
 </html>
