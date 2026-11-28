@@ -4,83 +4,138 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actuaciones - A.M. Amargura</title>
-        <link rel="icon" type="image/png" href="escudo.png">
+    <link rel="icon" type="image/png" href="escudo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --granate: #800000;
-            --dorado: #d4af37;
-            --crema: #fdfaf5;
-            --texto: #2c2c2c;
+            --granate: #5c0a14;
+            --granate-oscuro: #3d060d;
+            --dorado: #b89758;
+            --dorado-claro: #d4bc8b;
+            --negro: #141414;
+            --crema: #f7f5f0;
             --blanco: #ffffff;
+            --borde-sutil: #e2dcd0;
+            --texto: #242424;
+            --texto-secundario: #55524d;
         }
 
         body {
             margin: 0;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             background-color: var(--crema);
             color: var(--texto);
-            line-height: 1.6;
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        h1, .year-header, .main-title {
+            font-family: 'Cinzel', Georgia, serif;
         }
 
         /* --- NAVBAR --- */
         .navbar {
             background-color: var(--granate);
-            height: 75px;
+            height: 82px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 25px;
+            padding: 0 40px;
             position: sticky;
             top: 0;
             z-index: 2000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-bottom: 2px solid var(--dorado);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
         }
 
-        .logo-nav { text-decoration: none; display: flex; flex-direction: column; }
-        .logo-nav .main-title { color: white; font-weight: bold; font-size: 1.2rem; text-transform: uppercase; }
-        .logo-nav .sub-title { color: var(--dorado); font-size: 0.75rem; letter-spacing: 2px; }
+        .logo-nav {
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-nav .main-title {
+            color: var(--blanco);
+            font-weight: 600;
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo-nav .sub-title {
+            color: var(--dorado-claro);
+            font-size: 0.72rem;
+            letter-spacing: 4px;
+            margin-top: 2px;
+            font-weight: 500;
+        }
 
         .menu-btn {
-            width: 35px;
-            height: 25px;
+            width: 32px;
+            height: 22px;
             cursor: pointer;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             z-index: 3001;
         }
-        .menu-btn span { display: block; height: 3px; width: 100%; background: white; border-radius: 3px; }
+
+        .menu-btn span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background: var(--dorado-claro);
+            transition: 0.3s ease;
+        }
 
         /* SIDEBAR */
-         .sidebar {
+        .sidebar {
             position: fixed;
             top: 0;
             right: -100%;
-            width: 300px;
+            width: 310px;
             height: 100vh;
-            background: #111;
+            background: var(--negro);
+            border-left: 1px solid var(--dorado);
             z-index: 2500;
-            transition: 0.5s ease;
+            transition: 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
             display: flex;
             flex-direction: column;
-            padding-top: 100px;
+            padding-top: 95px;
+            overflow-y: auto;
         }
 
         .sidebar.active { right: 0; }
 
+        .sidebar-section-label {
+            padding: 20px 40px 6px;
+            color: var(--dorado);
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            font-weight: 600;
+            border-top: 1px solid rgba(184, 151, 88, 0.15);
+            margin-top: 10px;
+        }
+
         .sidebar a {
-            color: #ddd;
+            color: #d8d4cc;
             text-decoration: none;
-            padding: 15px 40px;
-            font-size: 1rem;
+            padding: 13px 40px;
+            font-size: 0.88rem;
             text-transform: uppercase;
-            font-weight: bold;
+            letter-spacing: 1.5px;
+            font-weight: 500;
             border-left: 3px solid transparent;
+            transition: all 0.25s ease;
         }
 
         .sidebar a:hover {
-            color: var(--dorado);
-            background: rgba(255,255,255,0.05);
+            color: var(--dorado-claro);
+            background: rgba(184, 151, 88, 0.08);
             border-left: 3px solid var(--dorado);
         }
 
@@ -90,164 +145,190 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(4px);
+            background: rgba(10, 10, 10, 0.65);
+            backdrop-filter: blur(2px);
             display: none;
             z-index: 2400;
         }
 
         .overlay.active { display: block; }
 
-        /* --- CONTENIDO --- */
+        /* --- HERO ACTUACIONES --- */
         .hero-actuaciones {
-            height: 43vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('WhatsApp Image 2026-05-20 at 09.06.55.jpeg');
+            height: 44vh;
+            background:
+                linear-gradient(rgba(15, 10, 11, 0.72), rgba(20, 14, 15, 0.86)),
+                url('WhatsApp Image 2026-05-20 at 09.06.55.jpeg');
             background-size: cover;
             background-position: center 47%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: var(--blanco);
             text-align: center;
+            padding: 0 20px;
+            border-bottom: 2px solid var(--dorado);
         }
 
         .hero-actuaciones h1 {
-            font-size: 2.5rem;
+            font-size: 2.65rem;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 4px;
-            border-bottom: 3px solid var(--dorado);
-            padding-bottom: 10px;
+            letter-spacing: 3.5px;
+            margin: 0;
+            border-bottom: 1px solid var(--dorado);
+            padding-bottom: 14px;
+            text-shadow: 0 4px 18px rgba(0, 0, 0, 0.65);
         }
 
+        /* --- CONTENEDOR Y ACORDEÓN --- */
         .container {
-            max-width: 900px;
-            margin: -40px auto 60px;
+            max-width: 920px;
+            margin: -45px auto 95px;
             padding: 0 20px;
+            box-sizing: border-box;
         }
 
-        /* ESTILO ACORDEÓN */
         .year-block {
             background: var(--blanco);
-            border-radius: 10px;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-radius: 3px;
+            margin-bottom: 16px;
+            border: 1px solid var(--borde-sutil);
+            border-left: 4px solid var(--granate);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
             overflow: hidden;
-            border-left: 5px solid var(--granate);
+            transition: border-left-color 0.25s ease;
+        }
+
+        .year-block:hover {
+            border-left-color: var(--dorado);
         }
 
         .year-header {
-            padding: 20px 25px;
+            padding: 20px 26px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-weight: bold;
-            font-size: 1.2rem;
+            font-weight: 600;
+            font-size: 1.15rem;
+            letter-spacing: 1px;
+            color: var(--granate);
             background: var(--blanco);
-            transition: background 0.3s;
+            transition: background 0.25s ease;
+            user-select: none;
         }
 
-        .year-header:hover { background: #f9f9f9; }
+        .year-header:hover {
+            background: var(--crema);
+        }
 
         .year-header span {
+            font-family: 'Montserrat', sans-serif;
             color: var(--dorado);
-            font-size: 1.5rem;
-            transition: transform 0.3s;
+            font-size: 1.35rem;
+            font-weight: 500;
+            line-height: 1;
+            transition: transform 0.25s ease;
         }
 
-        .year-header.active span { transform: rotate(45deg); }
+        .year-header.active span {
+            transform: rotate(45deg);
+        }
 
         .year-content {
             display: none;
-            padding: 10px 25px 25px;
-            border-top: 1px solid #eee;
-            background: #fff;
+            padding: 12px 26px 24px;
+            border-top: 1px solid var(--borde-sutil);
+            background: var(--blanco);
+        }
+
+        .year-content > p {
+            font-family: 'Lora', Georgia, serif;
+            color: var(--texto-secundario);
+            font-size: 0.95rem;
+            margin: 8px 0 16px;
         }
 
         .event-item {
-            padding: 12px 0;
-            border-bottom: 1px dashed #ddd;
+            padding: 12px 0 12px 14px;
+            border-bottom: 1px solid #f0ece3;
+            border-left: 2px solid transparent;
             display: flex;
             flex-direction: column;
+            transition: border-left-color 0.25s ease;
         }
 
-        .event-item:last-child { border-bottom: none; }
+        .event-item:hover {
+            border-left-color: var(--dorado);
+        }
 
-        .event-name { font-weight: 600; color: #111; }
-        .event-detail { font-size: 0.9rem; color: #666; }
+        .event-item:last-child {
+            border-bottom: none;
+        }
+
+        .event-name {
+            font-weight: 600;
+            color: var(--texto);
+            font-size: 0.96rem;
+        }
+
+        .event-detail {
+            font-size: 0.88rem;
+            color: var(--texto-secundario);
+            margin-top: 3px;
+        }
 
         .badge-especial {
-            background: #fff9e6;
-            color: #b08d1a;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: bold;
+            display: inline-block;
+            background: var(--crema);
+            color: var(--granate);
+            padding: 2px 9px;
+            border-radius: 2px;
+            font-size: 0.68rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
             margin-left: 10px;
-            border: 1px solid #e5c158;
+            border: 1px solid var(--dorado);
+            vertical-align: middle;
         }
 
-        @media (max-width: 600px) {
-            .hero-actuaciones h1 { font-size: 1.8rem; }
-            .container { margin-top: -20px; }
-        }
-                /* --- FOOTER --- */
-        footer {
+        /* --- BANNER INFERIOR --- */
+        .banner-fijo {
+            background-color: var(--granate-oscuro);
+            color: var(--dorado-claro);
+            border-top: 1px solid var(--dorado);
+            font-weight: 500;
+            letter-spacing: 1.2px;
+            padding: 10px 16px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
             text-align: center;
-            padding: 40px;
-            border-top: 1px solid #222;
-            color: #555;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
+            box-sizing: border-box;
+            font-size: 0.82rem;
+            text-transform: uppercase;
         }
-        /* --- RESPONSIVE NAVBAR --- */
-@media (max-width: 480px) {
-    .navbar {
-        padding: 0 15px; /* Reduce el espacio a los lados en pantallas muy pequeñas */
-    }
-    
-    .logo-nav .main-title {
-        font-size: 0.95rem; /* Achica el título principal para que no se desborde */
-    }
 
-    .logo-nav .sub-title {
-        font-size: 0.65rem; /* Achica el subtítulo en consonancia */
-        letter-spacing: 1px; /* Reduce un poco el espaciado entre letras */
-    }
-    
-    .menu-btn {
-        width: 30px; /* Hace el botón de menú ligeramente más pequeño */
-        height: 22px;
-    }
-}
-        /* --- ESTILO BASE DEL BANNER INFERIOR --- */
-.banner-fijo {
-    background-color: var(--granate); 
-    color: var(--dorado); 
-    font-weight: bold; 
-    padding: 12px; 
-    position: fixed; 
-    bottom: 0; 
-    left: 0; 
-    width: 100%; 
-    z-index: 1000; 
-    text-align: center; 
-    box-sizing: border-box; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    word-break: break-word;
-    font-size: 0.95rem;
-}
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero-actuaciones { height: 36vh; }
+            .hero-actuaciones h1 { font-size: 1.85rem; letter-spacing: 2px; }
+            .container { margin-top: -25px; margin-bottom: 85px; }
+            .year-header { padding: 18px 20px; font-size: 1rem; }
+            .year-content { padding: 10px 20px 20px; }
+        }
 
-/* --- RESPONSIVE PARA EL BANNER (PANTALLAS PEQUEÑAS) --- */
-@media (max-width: 480px) {
-    .banner-fijo {
-        padding: 6px 10px; /* Se vuelve mucho más estrecho */
-        font-size: 0.75rem;  /* Letra más pequeña para que no genere demasiadas líneas */
-    }
-}
-
+        @media (max-width: 480px) {
+            .navbar { padding: 0 18px; height: 74px; }
+            .logo-nav .main-title { font-size: 0.95rem; letter-spacing: 1px; }
+            .logo-nav .sub-title { font-size: 0.65rem; letter-spacing: 2px; }
+            .hero-actuaciones h1 { font-size: 1.5rem; }
+            .banner-fijo { font-size: 0.7rem; padding: 8px 10px; }
+        }
     </style>
 </head>
 <body>
@@ -266,18 +347,23 @@
 
     <div class="overlay" id="overlay"></div>
     <div class="sidebar" id="sidebar">
-            <a href="index.html">Inicio</a>
-        <div style="padding: 18px 40px 5px; color: var(--dorado); font-size: 0.8rem; letter-spacing: 2px;">HISTORIA</div>
-        <a href="HISTORIA VIRGEN DE LA AMARGURA.html">• La Virgen</a>
-        <a href="HISTORIA DE LA BANDA.html">• La Banda</a>
-        <a href="HISTORIA A.M.C. SAN MIGUEL.html">• San Miguel</a>
+        <a href="index.html">Inicio</a>
+
+        <div class="sidebar-section-label">HISTORIA</div>
+        <a href="HISTORIA VIRGEN DE LA AMARGURA.html">La Virgen</a>
+        <a href="HISTORIA DE LA BANDA.html">La Banda</a>
+        <a href="HISTORIA A.M.C. SAN MIGUEL.html">San Miguel</a>
+
+        <div class="sidebar-section-label">AGRUPACIÓN</div>
         <a href="REPERTORIO.html">Música</a>
         <a href="COMPONENTES.html">Componentes</a>
         <a href="UNIFORMIDAD.html">Uniformidad</a>
         <a href="ACTUACIONES.html">Actuaciones</a>
+        <a href="VIDEOTECA.html">Vídeos de marchas</a>
+
+        <div class="sidebar-section-label">SECRETARÍA</div>
         <a href="CONTACTO.html">Contacto</a>
         <a href="REDES.html">Redes sociales</a>
-        <a href="VIDEOTECA.html">Vídeos de marchas</a>
     </div>
 
     <header class="hero-actuaciones">
@@ -296,11 +382,11 @@
                 <div class="event-item"><span class="event-name">Procesión de la Santa Vera Cruz - Cofradía de la Salud</span><span class="event-detail">2 abril 2026. Santander.</span></div>
                 <div class="event-item"><span class="event-name">Concierto en el santuario de Ntra. Sra de Latas</span><span class="event-detail">3 abril 2025. Latas.</span></div>
                 <div class="event-item"><span class="event-name">Procesión Viernes Santo - Santo Entierro</span><span class="event-detail">3 abril 2026. Carrión de los Condes (Palencia).</span></div>
-                <div class="event-item"><span class="event-name">Procesión del Domingo de Resurrección</span><span class="event-detail">5 abril 2026. Santander.</span></div>        
+                <div class="event-item"><span class="event-name">Procesión del Domingo de Resurrección</span><span class="event-detail">5 abril 2026. Santander.</span></div>
                 <div class="event-item"><span class="event-name">Procesión de la Virgen del Mar</span><span class="event-detail">25 mayo 2026. Santander.</span></div>
                 <div class="event-item"><span class="event-name">Fiestas Virgen de la Cama</span><span class="event-detail">22 agosto 2026. Escalante.</span></div>
                 <div class="event-item"><span class="event-name">Evento privado</span><span class="event-detail">28 agosto 2026. Muriedas.</span></div>
-               <div class="event-item"><span class="event-name">Fiestas de la Virgen de Latas</span><span class="event-detail">30 agosto y 3 septiembre 2026. Somo y Latas.</span></div>
+                <div class="event-item"><span class="event-name">Fiestas de la Virgen de Latas</span><span class="event-detail">30 agosto y 3 septiembre 2026. Somo y Latas.</span></div>
             </div>
         </div>
 
@@ -316,8 +402,8 @@
                 <div class="event-item"><span class="event-name">Procesión de la Santa Vera Cruz - Cofradía de la Salud</span><span class="event-detail">17 abril 2025. Santander.</span></div>
                 <div class="event-item"><span class="event-name">Procesión Viernes Santo - Santo Entierro</span><span class="event-detail">18 abril 2025. Carrión de los Condes (Palencia).</span></div>
                 <div class="event-item"><span class="event-name">Procesión del Domingo de Resurrección</span><span class="event-detail">20 abril 2025. Santander.</span></div>
-                <div class="event-item"><span class="event-name">Procesión de la Virgen del Mar</span><span class="event-detail">9 junio 2025. Santander.</span></div>   
-                <div class="event-item"><span class="event-name">Fiestas Virgen de la Cama</span><span class="event-detail">22 agosto 2025. Escalante.</span></div>             
+                <div class="event-item"><span class="event-name">Procesión de la Virgen del Mar</span><span class="event-detail">9 junio 2025. Santander.</span></div>
+                <div class="event-item"><span class="event-name">Fiestas Virgen de la Cama</span><span class="event-detail">22 agosto 2025. Escalante.</span></div>
             </div>
         </div>
 
@@ -363,7 +449,7 @@
         <div class="year-block">
             <div class="year-header">Periodo 2006 - 2015 <span>+</span></div>
             <div class="year-content">
-                <div class="event-item"><span class="event-name">Colaboración A.M. Virgen de la Amargura de Ferrol</span><span class="badge-especial">Hito Histórico</span><span class="event-detail">Procesión del Encuentro 2009. Santander.</span></div>
+                <div class="event-item"><span class="event-name">Colaboración A.M. Virgen de la Amargura de Ferrol<span class="badge-especial">Hito Histórico</span></span><span class="event-detail">Procesión del Encuentro 2009. Santander.</span></div>
                 <div class="event-item"><span class="event-name">Concierto Sones Solidarios</span><span class="event-detail">Evento benéfico para diversas causas.</span></div>
                 <div class="event-item"><span class="event-name">Guerras Cántabras 2012</span><span class="event-detail">Participación como banda sonora del desfile general.</span></div>
                 <div class="event-item"><span class="event-name">Ciclos de Semana Santa</span><span class="event-detail">Presencia ininterrumpida en la capital cántabra.</span></div>
@@ -378,10 +464,13 @@
                 <div class="event-item"><span class="event-name">Décadas 70, 80 y 90</span><span class="event-detail">Época dorada de la corneta con transpositor y expansión regional.</span></div>
             </div>
         </div>
-
     </div>
+
+    <div class="banner-fijo">
+        Agrupación Musical Virgen de la Amargura · Banda Decana de Santander
+    </div>
+
     <script>
-        // Menú lateral
         const menuBtn = document.getElementById('menuBtn');
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('overlay');
@@ -394,7 +483,6 @@
         menuBtn.addEventListener('click', toggleMenu);
         overlay.addEventListener('click', toggleMenu);
 
-        // Acordeón
         document.querySelectorAll('.year-header').forEach(header => {
             header.addEventListener('click', () => {
                 header.classList.toggle('active');
@@ -407,10 +495,5 @@
             });
         });
     </script>
- <!-- Reemplaza la etiqueta del final por esta más limpia -->
-<div class="banner-fijo"> 
-    ¡Próximas actuaciones! No os las perdáis - Santander - Agrupación Musical Virgen de la Amargura de Santander
-</div>
-
 </body>
 </html>
