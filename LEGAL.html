@@ -84,6 +84,85 @@
             font-weight: 500;
         }
 
+        .menu-btn {
+            width: 32px;
+            height: 22px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 3001;
+        }
+
+        .menu-btn span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background: var(--dorado-claro);
+            transition: 0.3s ease;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 310px;
+            height: 100vh;
+            background: var(--negro);
+            border-left: 1px solid var(--dorado);
+            z-index: 2500;
+            transition: 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            flex-direction: column;
+            padding-top: 95px;
+            overflow-y: auto;
+        }
+
+        .sidebar.active { right: 0; }
+
+        .sidebar-section-label {
+            padding: 20px 40px 6px;
+            color: var(--dorado);
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            font-weight: 600;
+            border-top: 1px solid rgba(184, 151, 88, 0.15);
+            margin-top: 10px;
+        }
+
+        .sidebar a {
+            color: #d8d4cc;
+            text-decoration: none;
+            padding: 13px 40px;
+            font-size: 0.88rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 500;
+            border-left: 3px solid transparent;
+            transition: all 0.25s ease;
+        }
+
+        .sidebar a:hover {
+            color: var(--dorado-claro);
+            background: rgba(184, 151, 88, 0.08);
+            border-left: 3px solid var(--dorado);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 10, 0.65);
+            backdrop-filter: blur(2px);
+            display: none;
+            z-index: 2400;
+        }
+
+        .overlay.active { display: block; }
+
         /* --- CONTENEDOR PRINCIPAL --- */
         .legal-container {
             max-width: 920px;
@@ -309,7 +388,33 @@
             <span class="main-title">A.M. Virgen de la Amargura</span>
             <span class="sub-title">SANTANDER</span>
         </a>
+        <div class="menu-btn" id="menuBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </nav>
+
+    <div class="overlay" id="overlay"></div>
+    <div class="sidebar" id="sidebar">
+        <a href="index.html">Inicio</a>
+
+        <div class="sidebar-section-label">HISTORIA</div>
+        <a href="HISTORIA VIRGEN DE LA AMARGURA.html">La Virgen</a>
+        <a href="HISTORIA DE LA BANDA.html">La Banda</a>
+        <a href="HISTORIA A.M.C. SAN MIGUEL.html">San Miguel</a>
+
+        <div class="sidebar-section-label">AGRUPACIÓN</div>
+        <a href="REPERTORIO.html">Música</a>
+        <a href="COMPONENTES.html">Componentes</a>
+        <a href="UNIFORMIDAD.html">Uniformidad</a>
+        <a href="ACTUACIONES.html">Actuaciones</a>
+        <a href="VIDEOTECA.html">Vídeos de marchas</a>
+
+        <div class="sidebar-section-label">SECRETARÍA</div>
+        <a href="CONTACTO.html">Contacto</a>
+        <a href="REDES.html">Redes sociales</a>
+    </div>
 
     <div class="legal-container">
 
@@ -431,6 +536,18 @@
     </div>
 
     <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+
+        function toggleMenu() {
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+
         const sections = document.querySelectorAll('.legal-section');
 
         sections.forEach(section => {
