@@ -4,168 +4,302 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aviso Legal y Privacidad - A.M. Amargura</title>
+    <link rel="icon" type="image/png" href="escudo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --granate: #800000;
-            --dorado: #d4af37;
-            --negro: #1a1a1a;
-            --crema: #fdfaf5;
+            --granate: #5c0a14;
+            --granate-oscuro: #3d060d;
+            --dorado: #b89758;
+            --dorado-claro: #d4bc8b;
+            --negro: #141414;
+            --crema: #f7f5f0;
             --blanco: #ffffff;
-            --texto: #444;
+            --borde-sutil: #e2dcd0;
+            --texto: #242424;
+            --texto-secundario: #55524d;
+            --navbar-height: 82px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             background-color: var(--crema);
             color: var(--texto);
-            line-height: 1.6;
+            line-height: 1.75;
+            overflow-x: hidden;
+            padding-top: calc(var(--navbar-height) + 46px);
+            padding-bottom: 90px;
+        }
+
+        h1, h3, .main-title, .legal-title {
+            font-family: 'Cinzel', Georgia, serif;
         }
 
         /* --- NAVBAR --- */
         .navbar {
             background-color: var(--granate);
-            height: 75px;
+            height: var(--navbar-height);
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 2000;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 25px;
-            position: sticky;
-            top: 0;
-            z-index: 2000;
+            padding: 0 40px;
+            border-bottom: 2px solid var(--dorado);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
         }
 
-        .logo-nav { text-decoration: none; display: flex; flex-direction: column; }
-        .logo-nav .main-title { color: white; font-weight: bold; font-size: 1.2rem; text-transform: uppercase; }
-        .logo-nav .sub-title { color: var(--dorado); font-size: 0.75rem; letter-spacing: 2px; }
+        .logo-nav {
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+        }
 
-        /* --- CONTENEDOR LEGAL --- */
+        .main-title {
+            color: var(--blanco);
+            font-weight: 600;
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .sub-title {
+            color: var(--dorado-claro);
+            font-size: 0.72rem;
+            letter-spacing: 4px;
+            margin-top: 2px;
+            font-weight: 500;
+        }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
         .legal-container {
-            max-width: 900px;
-            margin: 40px auto;
+            max-width: 920px;
+            margin: 0 auto;
             padding: 0 20px;
         }
 
         .legal-header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 42px;
         }
 
         .legal-header h1 {
             color: var(--granate);
+            font-size: 2.2rem;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            border-bottom: 2px solid var(--dorado);
+            letter-spacing: 3px;
+            border-bottom: 1px solid var(--dorado);
             display: inline-block;
-            padding-bottom: 10px;
+            padding-bottom: 12px;
+            margin-bottom: 12px;
+        }
+
+        .legal-header p {
+            font-family: 'Lora', Georgia, serif;
+            font-style: italic;
+            color: var(--texto-secundario);
+            font-size: 1rem;
         }
 
         /* --- ACORDEÓN --- */
         .legal-section {
             background: var(--blanco);
-            margin-bottom: 15px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin-bottom: 16px;
+            border-radius: 3px;
             overflow: hidden;
-            border: 1px solid #eee;
+            border: 1px solid var(--borde-sutil);
+            border-left: 4px solid var(--granate);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+            transition: border-left-color 0.25s ease;
+        }
+
+        .legal-section:hover {
+            border-left-color: var(--dorado);
         }
 
         .legal-title {
-            padding: 20px 25px;
-            background: var(--blanco);
+            padding: 20px 26px;
             color: var(--granate);
-            font-weight: bold;
+            font-weight: 600;
+            font-size: 1.05rem;
+            letter-spacing: 1.2px;
             text-transform: uppercase;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: 0.3s;
+            transition: background 0.25s ease, color 0.25s ease;
+            user-select: none;
         }
 
         .legal-title:hover {
-            background: #fffbf0;
+            background: var(--crema);
+        }
+
+        .legal-title span {
+            font-family: 'Montserrat', sans-serif;
             color: var(--dorado);
+            font-size: 1.3rem;
+            font-weight: 500;
+            line-height: 1;
         }
 
         .legal-content {
-            padding: 0 25px;
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease-out, padding 0.3s;
-            font-size: 0.95rem;
+            padding: 0 26px;
+            transition: max-height 0.45s ease, padding 0.3s ease;
+            font-size: 0.94rem;
+            color: var(--texto-secundario);
         }
 
         .legal-section.active .legal-content {
-            max-height: 5000px; /* Suficiente para el texto largo */
-            padding: 20px 25px;
-            border-top: 1px solid #eee;
+            max-height: 5000px;
+            padding: 22px 26px 26px;
+            border-top: 1px solid var(--borde-sutil);
         }
 
         .legal-section.active .legal-title {
             background: var(--granate);
-            color: white;
+            color: var(--blanco);
         }
 
-        h3 { color: var(--granate); margin-top: 25px; font-size: 1.1rem; }
-        p { margin-bottom: 15px; }
-        ul { margin-bottom: 15px; }
-
-        .btn-volver {
-            display: block;
-            width: fit-content;
-            margin: 40px auto;
-            padding: 12px 30px;
-            background: var(--negro);
-            color: var(--dorado);
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 50px;
-            transition: 0.3s;
+        .legal-section.active .legal-title span {
+            color: var(--dorado-claro);
         }
 
-        .btn-volver:hover { transform: scale(1.05); background: var(--granate); color: white; }
+        h3 {
+            color: var(--granate);
+            margin: 24px 0 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--borde-sutil);
+            padding-bottom: 5px;
+        }
 
+        .legal-content h3:first-child {
+            margin-top: 0;
+        }
+
+        p {
+            margin-bottom: 14px;
+            text-align: justify;
+        }
+
+        strong {
+            color: var(--texto);
+        }
+
+        /* --- TABLAS --- */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
-            font-size: 0.85rem;
+            margin: 20px 0 6px;
+            font-size: 0.86rem;
+            border: 1px solid var(--borde-sutil);
         }
+
         th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
+            border: 1px solid #e6e0d4;
+            padding: 11px 14px;
             text-align: left;
         }
-        th { background: #f4f4f4; color: var(--granate); }
-        footer {
-            text-align: center;
-            padding: 40px;
-            border-top: 1px solid #222;
-            color: #555;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-        }
-        /* --- RESPONSIVE NAVBAR --- */
-@media (max-width: 480px) {
-    .navbar {
-        padding: 0 15px; /* Reduce el espacio a los lados en pantallas muy pequeñas */
-    }
-    
-    .logo-nav .main-title {
-        font-size: 0.95rem; /* Achica el título principal para que no se desborde */
-    }
 
-    .logo-nav .sub-title {
-        font-size: 0.65rem; /* Achica el subtítulo en consonancia */
-        letter-spacing: 1px; /* Reduce un poco el espaciado entre letras */
-    }
-    
-    .menu-btn {
-        width: 30px; /* Hace el botón de menú ligeramente más pequeño */
-        height: 22px;
-    }
-}
+        th {
+            background: var(--granate-oscuro);
+            color: var(--dorado-claro);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.74rem;
+            letter-spacing: 1.4px;
+            border-bottom: 2px solid var(--dorado);
+        }
+
+        td {
+            color: var(--texto-secundario);
+        }
+
+        tbody tr:nth-child(even) {
+            background: var(--crema);
+        }
+
+        /* --- BOTÓN VOLVER --- */
+        .btn-volver {
+            display: block;
+            width: fit-content;
+            margin: 40px auto 10px;
+            padding: 13px 32px;
+            background: var(--negro);
+            color: var(--dorado-claro);
+            border: 1px solid var(--dorado);
+            text-decoration: none;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-volver:hover {
+            background: var(--granate);
+            color: var(--blanco);
+        }
+
+        /* --- BANNER FIJO INFERIOR --- */
+        .banner-fijo {
+            background-color: var(--granate-oscuro);
+            color: var(--dorado-claro);
+            border-top: 1px solid var(--dorado);
+            font-weight: 500;
+            letter-spacing: 1.2px;
+            padding: 10px 16px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            text-align: center;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 600px) {
+            .legal-header h1 { font-size: 1.65rem; letter-spacing: 2px; }
+            .legal-title { padding: 18px 20px; font-size: 0.94rem; }
+            .legal-section.active .legal-content { padding: 18px 20px 22px; }
+            p { text-align: left; }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                --navbar-height: 74px;
+                padding-top: calc(var(--navbar-height) + 32px);
+            }
+            .navbar { padding: 0 18px; }
+            .main-title { font-size: 0.95rem; letter-spacing: 1px; }
+            .sub-title { font-size: 0.65rem; letter-spacing: 2px; }
+            .banner-fijo { padding: 8px 10px; font-size: 0.7rem; }
+            table { font-size: 0.76rem; }
+            th, td { padding: 8px 9px; }
+        }
     </style>
 </head>
 <body>
@@ -178,47 +312,80 @@
     </nav>
 
     <div class="legal-container">
+
         <header class="legal-header">
             <h1>Información Legal</h1>
             <p>Cumplimiento normativo y protección de datos</p>
         </header>
 
+        <!-- AVISO LEGAL -->
         <div class="legal-section">
-            <div class="legal-title">1. Aviso Legal <span>+</span></div>
+            <div class="legal-title">
+                1. Aviso Legal
+                <span>+</span>
+            </div>
+
             <div class="legal-content">
-                <p>En el presente Aviso Legal, el Usuario podrá encontrar toda la información relativa a las condiciones legales que definen las relaciones entre los usuarios y el responsable de la página web accesible en la dirección URL <strong>https://sergioleong58-create.github.io/AMargurasdr/index.html</strong>.</p>
-                
+                <p>
+                    En el presente Aviso Legal, el Usuario podrá encontrar toda la información relativa a las condiciones legales que definen las relaciones entre los usuarios y el responsable de la página web accesible en la dirección URL:
+                    <strong>https://amargurasantander.github.io/AMargurasdr/index.html/</strong>
+                </p>
+
                 <h3>Datos del responsable</h3>
-                <p><strong>Titular:</strong> Agrupación Musical Virgen de la Amargura (Amargura Santander)<br>
-                <strong>Domicilio:</strong> Calle Navarra, Santander<br>
-                <strong>CIF:</strong> G39858642<br>
-                <strong>Email:</strong> amargurasdr@gmail.com</p>
+                <p>
+                    <strong>Titular:</strong> Agrupación Musical Virgen de la Amargura (Amargura Santander)<br>
+                    <strong>Domicilio:</strong> Calle Navarra, Santander<br>
+                    <strong>CIF:</strong> G39858642<br>
+                    <strong>Email:</strong> amargurasdr@gmail.com
+                </p>
 
-                <p>Este Sitio Web garantiza la protección y confidencialidad de los datos personales de acuerdo con el RGPD (UE) 2016/679 y la LSSI-CE 34/2002.</p>
-                
+                <p>
+                    Este Sitio Web garantiza la protección y confidencialidad de los datos personales de acuerdo con el RGPD (UE) 2016/679 y la LSSI-CE 34/2002.
+                </p>
+
                 <h3>Contenidos y Uso</h3>
-                <p>Se prohíbe el uso de los contenidos de la web para promocionar o divulgar publicidad propia o de terceros sin autorización expresa. Los derechos de propiedad intelectual de los contenidos pertenecen a Amargura Santander.</p>
+                <p>
+                    Se prohíbe el uso de los contenidos de la web para promocionar o divulgar publicidad propia o de terceros sin autorización expresa. Los derechos de propiedad intelectual pertenecen a Amargura Santander.
+                </p>
             </div>
         </div>
 
+        <!-- PRIVACIDAD -->
         <div class="legal-section">
-            <div class="legal-title">2. Política de Privacidad <span>+</span></div>
+            <div class="legal-title">
+                2. Política de Privacidad
+                <span>+</span>
+            </div>
+
             <div class="legal-content">
-                <p>La Agrupación Musical Virgen de la Amargura garantiza la protección y confidencialidad de los datos personales de cualquier tipo que nos proporcionen de acuerdo con el principio de responsabilidad proactiva.</p>
-                
+                <p>
+                    La Agrupación Musical Virgen de la Amargura garantiza la protección y confidencialidad de los datos personales de cualquier tipo que nos proporcionen.
+                </p>
+
                 <h3>¿Para qué usaremos sus datos?</h3>
-                <p>Los datos serán incluidos en ficheros imprescindibles para prestar los servicios solicitados por los usuarios o resolver dudas planteadas en el formulario de contacto.</p>
-                
+                <p>
+                    Los datos serán incluidos en ficheros imprescindibles para prestar los servicios solicitados por los usuarios o resolver dudas planteadas en el formulario de contacto.
+                </p>
+
                 <h3>Sus Derechos</h3>
-                <p>Usted puede ejercer sus derechos de acceso, supresión, limitación, oposición y portabilidad enviando un correo a <strong>amargurasdr@gmail.com</strong> adjuntando copia de su DNI.</p>
+                <p>
+                    Puede ejercer sus derechos de acceso, supresión, limitación, oposición y portabilidad enviando un correo a <strong>amargurasdr@gmail.com</strong>.
+                </p>
             </div>
         </div>
 
+        <!-- COOKIES -->
         <div class="legal-section">
-            <div class="legal-title">3. Política de Cookies <span>+</span></div>
+            <div class="legal-title">
+                3. Política de Cookies
+                <span>+</span>
+            </div>
+
             <div class="legal-content">
-                <p>Utilizamos cookies para facilitar la navegación y elaborar estadísticas. Las cookies son pequeños archivos que se graban en el navegador para recordar su visita sin identificar su identidad personal.</p>
-                
+                <p>
+                    Utilizamos cookies para facilitar la navegación y elaborar estadísticas.
+                </p>
+
                 <h3>Cookies utilizadas</h3>
                 <table>
                     <thead>
@@ -230,34 +397,53 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>_ga</td><td>Google Analytics</td><td>Control de visitas únicas</td><td>2 años</td></tr>
-                        <tr><td>_gid</td><td>Google Analytics</td><td>Distinción de usuarios</td><td>24 horas</td></tr>
-                        <tr><td>_fbp</td><td>Facebook</td><td>Publicidad</td><td>Sesión</td></tr>
+                        <tr>
+                            <td>_ga</td>
+                            <td>Google Analytics</td>
+                            <td>Control de visitas únicas</td>
+                            <td>2 años</td>
+                        </tr>
+                        <tr>
+                            <td>_gid</td>
+                            <td>Google Analytics</td>
+                            <td>Distinción de usuarios</td>
+                            <td>24 horas</td>
+                        </tr>
+                        <tr>
+                            <td>_fbp</td>
+                            <td>Facebook</td>
+                            <td>Publicidad</td>
+                            <td>Sesión</td>
+                        </tr>
                     </tbody>
                 </table>
-                <p>Usted puede bloquear o eliminar las cookies instaladas en su equipo mediante la configuración de las opciones del navegador (Chrome, Firefox, Safari, Edge).</p>
             </div>
         </div>
 
-        <a href="index.html" class="btn-volver">VOLVER AL INICIO</a>
+        <a href="index.html" class="btn-volver">
+            Volver al inicio
+        </a>
+
+    </div>
+
+    <div class="banner-fijo">
+        Agrupación Musical Virgen de la Amargura · Banda Decana de Santander
     </div>
 
     <script>
-        // Lógica para el acordeón
         const sections = document.querySelectorAll('.legal-section');
-        
+
         sections.forEach(section => {
             const title = section.querySelector('.legal-title');
+
             title.addEventListener('click', () => {
-                // Cerrar otras secciones (opcional, si quieres que solo haya una abierta)
-                // sections.forEach(s => { if(s !== section) s.classList.remove('active'); });
-                
                 section.classList.toggle('active');
-                const span = title.querySelector('span');
-                span.textContent = section.classList.contains('active') ? '-' : '+';
+
+                const icon = title.querySelector('span');
+                icon.textContent = section.classList.contains('active') ? '-' : '+';
             });
         });
     </script>
-        <marquee style="background-color: var(--granate); color: var(--dorado); font-weight: bold; padding: 12px; position: fixed; bottom: 0; width: 100%; z-index: 1000;">
-        ¡Próximas actuaciones! No os las perdáis - Santander - Agrupación Musical Virgen de la Amargura de Santander</marquee></body>
+
+</body>
 </html>

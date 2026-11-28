@@ -3,36 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Componentes Agrupación - A.M. Amargura</title>
+    <title>Componentes de la Agrupación - A.M. Amargura</title>
+    <link rel="icon" type="image/png" href="escudo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --granate: #800000;
-            --granate-vivo: #a30000;
-            --dorado: #d4af37;
-            --dorado-gala: #e5c158;
+            --granate: #5c0a14;
+            --granate-oscuro: #3d060d;
+            --dorado: #b89758;
+            --dorado-claro: #d4bc8b;
+            --negro: #141414;
+            --crema: #f7f5f0;
             --blanco: #ffffff;
-            --gris-fondo: #f8f9fa;
+            --borde-sutil: #e2dcd0;
+            --texto: #242424;
+            --texto-secundario: #55524d;
         }
 
         body {
             margin: 0;
-            font-family: 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--gris-fondo);
-            color: #333;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--crema);
+            color: var(--texto);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        h1, h2, .main-title {
+            font-family: 'Cinzel', Georgia, serif;
         }
 
         /* --- NAVBAR --- */
         .navbar {
             background-color: var(--granate);
-            height: 80px;
+            height: 82px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 30px;
+            padding: 0 40px;
             position: sticky;
             top: 0;
             z-index: 2000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border-bottom: 2px solid var(--dorado);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
         }
 
         .logo-nav {
@@ -42,22 +59,24 @@
         }
 
         .logo-nav .main-title {
-            color: white;
-            font-weight: bold;
-            font-size: 1.3rem;
+            color: var(--blanco);
+            font-weight: 600;
+            font-size: 1.25rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .logo-nav .sub-title {
-            color: var(--dorado);
-            font-size: 0.8rem;
             letter-spacing: 2px;
         }
 
+        .logo-nav .sub-title {
+            color: var(--dorado-claro);
+            font-size: 0.72rem;
+            letter-spacing: 4px;
+            margin-top: 2px;
+            font-weight: 500;
+        }
+
         .menu-btn {
-            width: 35px;
-            height: 25px;
+            width: 32px;
+            height: 22px;
             cursor: pointer;
             display: flex;
             flex-direction: column;
@@ -67,42 +86,56 @@
 
         .menu-btn span {
             display: block;
-            height: 3px;
+            height: 2px;
             width: 100%;
-            background: white;
-            border-radius: 3px;
+            background: var(--dorado-claro);
+            transition: 0.3s ease;
         }
 
-        /* SIDEBAR MÓVIL */
+        /* SIDEBAR */
         .sidebar {
             position: fixed;
             top: 0;
             right: -100%;
-            width: 300px;
+            width: 310px;
             height: 100vh;
-            background: #111;
+            background: var(--negro);
+            border-left: 1px solid var(--dorado);
             z-index: 2500;
-            transition: 0.5s ease;
+            transition: 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
             display: flex;
             flex-direction: column;
-            padding-top: 100px;
+            padding-top: 95px;
+            overflow-y: auto;
         }
 
         .sidebar.active { right: 0; }
 
+        .sidebar-section-label {
+            padding: 20px 40px 6px;
+            color: var(--dorado);
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            font-weight: 600;
+            border-top: 1px solid rgba(184, 151, 88, 0.15);
+            margin-top: 10px;
+        }
+
         .sidebar a {
-            color: #ddd;
+            color: #d8d4cc;
             text-decoration: none;
-            padding: 15px 40px;
-            font-size: 1rem;
+            padding: 13px 40px;
+            font-size: 0.88rem;
             text-transform: uppercase;
-            font-weight: bold;
+            letter-spacing: 1.5px;
+            font-weight: 500;
             border-left: 3px solid transparent;
+            transition: all 0.25s ease;
         }
 
         .sidebar a:hover {
-            color: var(--dorado);
-            background: rgba(255,255,255,0.05);
+            color: var(--dorado-claro);
+            background: rgba(184, 151, 88, 0.08);
             border-left: 3px solid var(--dorado);
         }
 
@@ -112,156 +145,154 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(4px);
+            background: rgba(10, 10, 10, 0.65);
+            backdrop-filter: blur(2px);
             display: none;
             z-index: 2400;
         }
 
         .overlay.active { display: block; }
 
-        /* --- CONTENIDO DE COMPONENTES --- */
+        /* --- HERO COMPONENTES --- */
         .hero-componentes {
-            height: 40vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('WhatsApp Image 2026-05-23 at 14.40.11.jpeg'); /* Fondo genérico o de banda */
+            height: 44vh;
+            background:
+                linear-gradient(rgba(15, 10, 11, 0.72), rgba(20, 14, 15, 0.86)),
+                url('WhatsApp Image 2026-05-23 at 14.40.11.jpeg');
             background-size: cover;
-            background-position: center;
+            background-position: center 42%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: var(--blanco);
             text-align: center;
+            padding: 0 20px;
+            border-bottom: 2px solid var(--dorado);
         }
 
         .hero-componentes h1 {
-            font-size: 2.8rem;
+            font-size: 2.65rem;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            border-bottom: 3px solid var(--dorado);
-            padding-bottom: 10px;
-            margin: 0 15px;
+            letter-spacing: 3.5px;
+            margin: 0;
+            border-bottom: 1px solid var(--dorado);
+            padding-bottom: 14px;
+            text-shadow: 0 4px 18px rgba(0, 0, 0, 0.65);
         }
 
-        /* GRID DE CLASIFICACIÓN */
+        /* --- GRID DE CLASIFICACIÓN --- */
         .main-grid {
-            max-width: 1200px;
-            margin: -30px auto 60px;
+            max-width: 1220px;
+            margin: -45px auto 95px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 28px;
             padding: 0 20px;
+            box-sizing: border-box;
         }
 
         .instrumento-card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-            border-top: 5px solid var(--dorado);
+            background: var(--blanco);
+            padding: 32px 28px;
+            border-radius: 3px;
+            border: 1px solid var(--borde-sutil);
+            border-top: 3px solid var(--granate);
+            box-shadow: 0 6px 22px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, border-top-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .instrumento-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-5px);
+            border-top-color: var(--dorado);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
         }
 
         .instrumento-card h2 {
             color: var(--granate);
-            font-size: 1.4rem;
+            font-size: 1.2rem;
+            font-weight: 600;
             text-transform: uppercase;
             margin-top: 0;
             margin-bottom: 20px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-            letter-spacing: 1px;
+            border-bottom: 1px solid var(--borde-sutil);
+            padding-bottom: 12px;
+            letter-spacing: 1.5px;
         }
 
         .lista-musicos {
             list-style: none;
             padding: 0;
             margin: 0;
-            line-height: 1.8;
-            font-size: 1rem;
+            line-height: 1.75;
+            font-size: 0.92rem;
+            color: var(--texto-secundario);
         }
 
         .lista-musicos li {
-            padding: 3px 0;
-            border-bottom: 1px dashed #f0f0f0;
+            padding: 6px 0 6px 12px;
+            border-bottom: 1px solid #f2efe9;
+            border-left: 2px solid transparent;
+            transition: border-left-color 0.25s ease, color 0.25s ease;
         }
 
-        /* Estilo para el Director Interactiva */
+        .lista-musicos li:last-child {
+            border-bottom: none;
+        }
+
+        .lista-musicos li:hover {
+            border-left-color: var(--dorado);
+            color: var(--texto);
+        }
+
         .director-interactivo {
-            color: var(--granate-vivo);
-            font-weight: bold;
+            color: var(--granate);
+            font-weight: 600;
             text-decoration: none;
-            cursor: pointer;
-            border-bottom: 1px solid transparent;
+            border-bottom: 1px solid rgba(184, 151, 88, 0.5);
+            padding-bottom: 1px;
+            transition: color 0.25s ease, border-color 0.25s ease;
         }
 
         .director-interactivo:hover {
-            color: var(--dorado-gala);
-            border-bottom-color: var(--dorado-gala);
+            color: var(--dorado);
+            border-bottom-color: var(--dorado);
         }
 
-        /* --- FOOTER REGRESAR --- */
-        .nav-footer {
+        /* --- BANNER INFERIOR --- */
+        .banner-fijo {
+            background-color: var(--granate-oscuro);
+            color: var(--dorado-claro);
+            border-top: 1px solid var(--dorado);
+            font-weight: 500;
+            letter-spacing: 1.2px;
+            padding: 10px 16px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
             text-align: center;
-            margin-top: 40px;
-            padding-bottom: 60px;
+            box-sizing: border-box;
+            font-size: 0.82rem;
+            text-transform: uppercase;
         }
 
-        .btn-regresar {
-            display: inline-flex;
-            align-items: center;
-            background: #222;
-            color: white !important;
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .btn-regresar:hover {
-            background: var(--granate);
-            transform: scale(1.05);
-        }
-
-        /* --- AJUSTES MÓVILES --- */
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            .navbar { padding: 0 15px; }
-            .hero-componentes h1 { font-size: 1.8rem; }
-            .instrumento-card { padding: 20px; }
-            .sidebar { width: 85%; }
+            .hero-componentes { height: 36vh; }
+            .hero-componentes h1 { font-size: 1.85rem; letter-spacing: 2px; }
+            .main-grid { margin-top: -25px; margin-bottom: 85px; }
+            .instrumento-card { padding: 24px 20px; }
         }
-                footer {
-            text-align: center;
-            padding: 40px;
-            border-top: 1px solid #222;
-            color: #555;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-        }
-        /* --- RESPONSIVE NAVBAR --- */
-@media (max-width: 480px) {
-    .navbar {
-        padding: 0 15px; /* Reduce el espacio a los lados en pantallas muy pequeñas */
-    }
-    
-    .logo-nav .main-title {
-        font-size: 0.95rem; /* Achica el título principal para que no se desborde */
-    }
 
-    .logo-nav .sub-title {
-        font-size: 0.65rem; /* Achica el subtítulo en consonancia */
-        letter-spacing: 1px; /* Reduce un poco el espaciado entre letras */
-    }
-    
-    .menu-btn {
-        width: 30px; /* Hace el botón de menú ligeramente más pequeño */
-        height: 22px;
-    }
-}
+        @media (max-width: 480px) {
+            .navbar { padding: 0 18px; height: 74px; }
+            .logo-nav .main-title { font-size: 0.95rem; letter-spacing: 1px; }
+            .logo-nav .sub-title { font-size: 0.65rem; letter-spacing: 2px; }
+            .hero-componentes h1 { font-size: 1.45rem; }
+            .banner-fijo { font-size: 0.7rem; padding: 8px 10px; }
+        }
     </style>
 </head>
 <body>
@@ -281,17 +312,22 @@
     <div class="overlay" id="overlay"></div>
     <div class="sidebar" id="sidebar">
         <a href="index.html">Inicio</a>
-        <div style="padding: 18px 40px 5px; color: var(--dorado); font-size: 0.8rem; letter-spacing: 2px;">HISTORIA</div>
-        <a href="HISTORIA VIRGEN DE LA AMARGURA.html">• La Virgen</a>
-        <a href="HISTORIA DE LA BANDA.html">• La Banda</a>
-        <a href="HISTORIA A.M.C. SAN MIGUEL.html">• San Miguel</a>
+
+        <div class="sidebar-section-label">HISTORIA</div>
+        <a href="HISTORIA VIRGEN DE LA AMARGURA.html">La Virgen</a>
+        <a href="HISTORIA DE LA BANDA.html">La Banda</a>
+        <a href="HISTORIA A.M.C. SAN MIGUEL.html">San Miguel</a>
+
+        <div class="sidebar-section-label">AGRUPACIÓN</div>
         <a href="REPERTORIO.html">Música</a>
         <a href="COMPONENTES.html">Componentes</a>
         <a href="UNIFORMIDAD.html">Uniformidad</a>
         <a href="ACTUACIONES.html">Actuaciones</a>
+        <a href="VIDEOTECA.html">Vídeos de marchas</a>
+
+        <div class="sidebar-section-label">SECRETARÍA</div>
         <a href="CONTACTO.html">Contacto</a>
         <a href="REDES.html">Redes sociales</a>
-        <a href="VIDEOTECA.html">Vídeos de marchas</a>
     </div>
 
     <header class="hero-componentes">
@@ -299,11 +335,11 @@
     </header>
 
     <main class="main-grid">
-        
+
         <section class="instrumento-card">
-            <h2>🎺 Cornetas</h2>
+            <h2>Cornetas</h2>
             <ul class="lista-musicos">
-                <li><a href="FERNANDO VITIENES.html" class="director-interactivo">Fernando Vitienes Santana-Director</a></li>
+                <li><a href="FERNANDO VITIENES.html" class="director-interactivo">Fernando Vitienes Santana — Director</a></li>
                 <li>Natalia Bengochea Palacios</li>
                 <li>Alberto Galve Doblas</li>
                 <li>Álvaro Quijano Vitienes</li>
@@ -311,7 +347,7 @@
         </section>
 
         <section class="instrumento-card">
-            <h2>🎺 Trompetas</h2>
+            <h2>Trompetas</h2>
             <ul class="lista-musicos">
                 <li>Valentín Quijano Vitienes</li>
                 <li>Maise Bengochea Pereda</li>
@@ -321,15 +357,15 @@
                 <li>Mario González González</li>
                 <li>Gabriel Sánchez Vitienes</li>
                 <li>Rubén Sánchez Vitienes</li>
-                <li>José Ángel Pedrajo Secada </li>
-                <li>Adrián</li>
-                <li>Romeo</li>
-                <li>Laro Ruiz</li>
+                <li>José Ángel Pedrajo Secada</li>
+                <li>Adrián Pedrajo</li>
+                <li>Romeo Fernández Peces</li>
+                <li>Laro Ruiz Arenal</li>
             </ul>
         </section>
 
         <section class="instrumento-card">
-            <h2>🎶 Trombones</h2>
+            <h2>Trombones</h2>
             <ul class="lista-musicos">
                 <li>Shaila Kiara Loaiza</li>
                 <li>Bruno Sánchez</li>
@@ -337,25 +373,25 @@
         </section>
 
         <section class="instrumento-card">
-            <h2>🎼 Bombardinos</h2>
+            <h2>Bombardinos</h2>
             <ul class="lista-musicos">
                 <li>César Pajares Pérez</li>
                 <li>Olga Santana López</li>
-                <li>Gustavo</li>
+                <li>Gustavo Encizo Canales</li>
             </ul>
         </section>
 
         <section class="instrumento-card">
-            <h2>🎼 Tubas</h2>
+            <h2>Tubas</h2>
             <ul class="lista-musicos">
                 <li>Ismael Chávez Chamorro</li>
-                <li>Marcos</li>
-                <li>Viki</li>
+                <li>Marcos Tejido Rodríguez</li>
+                <li>Victoria Alejandra Anselmi</li>
             </ul>
         </section>
 
         <section class="instrumento-card">
-            <h2>🥁 Cajas</h2>
+            <h2>Cajas</h2>
             <ul class="lista-musicos">
                 <li><a href="CITI.html" class="director-interactivo">F. Javier Palacios Fernández</a></li>
                 <li>Jorge Aríztegui Hoya</li>
@@ -363,47 +399,50 @@
         </section>
 
         <section class="instrumento-card">
-            <h2>🥁 Tambores</h2>
+            <h2>Tambores</h2>
             <ul class="lista-musicos">
                 <li>Cristina Quijano Vitienes</li>
-                <li>Juan Carlos Bengochea Palacios</li>
+                <li>J. Carlos Bengochea Palacios</li>
                 <li>Sergio León García Díez</li>
                 <li>Patricia García Díez</li>
                 <li>Isabel Gotia</li>
-                <li>Darío Ruiz</li>
-                <li>Ramón</li>
+                <li>Darío Ruiz Arenal</li>
+                <li>Ramón Somoza Madariaga</li>
             </ul>
         </section>
 
         <section class="instrumento-card">
-            <h2>🥁 Bombos y Timbales</h2>
+            <h2>Bombos y Timbales</h2>
             <ul class="lista-musicos">
                 <li>Fernando Vitienes Valdecillo</li>
-                <li>José Lucena</li>
+                <li>José Miguel Lucena</li>
                 <li>Marco Fernández</li>
-                <li>Rubén</li>
-                <li>Ángel Puente</li>
+                <li>Ángel Ruiz Puente</li>
             </ul>
         </section>
 
         <section class="instrumento-card">
-            <h2>🥁 Platillos</h2>
+            <h2>Platillos</h2>
             <ul class="lista-musicos">
                 <li>Santiago Martínez Ruiz</li>
             </ul>
         </section>
 
         <section class="instrumento-card">
-            <h2>🚩 Guión y acompañantes</h2>
+            <h2>Guión y acompañantes</h2>
             <ul class="lista-musicos">
-                <li>Josué</li>
-                <li>Noa</li>
-                <li>Laro</li>
-                <li>Kendra</li>
+                <li>Josué Revuelta Solana — Portaestandartes</li>
+                <li>Noa Vitienes Fernández</li>
+                <li>Laro Vitienes Fernández</li>
+                <li>Kendra Fernández Peces</li>
             </ul>
         </section>
 
     </main>
+
+    <div class="banner-fijo">
+        Agrupación Musical Virgen de la Amargura · Banda Decana de Santander
+    </div>
 
     <script>
         const menuBtn = document.getElementById('menuBtn');
@@ -418,7 +457,5 @@
         menuBtn.addEventListener('click', toggleMenu);
         overlay.addEventListener('click', toggleMenu);
     </script>
-        <marquee style="background-color: var(--granate); color: var(--dorado); font-weight: bold; padding: 12px; position: fixed; bottom: 0; width: 100%; z-index: 1000;">
-        ¡Próximas actuaciones! No os las perdáis - Santander - Agrupación Musical Virgen de la Amargura de Santander    </marquee>
 </body>
 </html>
