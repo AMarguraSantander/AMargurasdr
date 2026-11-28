@@ -4,36 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Repertorio Musical - A.M. Amargura</title>
-        <link rel="icon" type="image/png" href="escudo.png">
+    <link rel="icon" type="image/png" href="escudo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --granate: #800000;
-            --dorado: #d4af37;
-            --crema: #fdfaf5;
-            --texto: #2c2c2c;
-            --verde-san-miguel: #1a4d2e;
+            --granate: #5c0a14;
+            --granate-oscuro: #3d060d;
+            --dorado: #b89758;
+            --dorado-claro: #d4bc8b;
+            --negro: #141414;
+            --crema: #f7f5f0;
+            --blanco: #ffffff;
+            --borde-sutil: #e2dcd0;
+            --texto: #242424;
+            --texto-secundario: #55524d;
         }
 
         body {
             margin: 0;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             background-color: var(--crema);
             color: var(--texto);
-            line-height: 1.6;
+            overflow-x: hidden;
+            line-height: 1.75;
+        }
+
+        h1, h2, .main-title, .category-title {
+            font-family: 'Cinzel', Georgia, serif;
         }
 
         /* --- NAVBAR --- */
         .navbar {
             background-color: var(--granate);
-            height: 75px;
+            height: 82px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 25px;
+            padding: 0 40px;
             position: sticky;
             top: 0;
             z-index: 2000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-bottom: 2px solid var(--dorado);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
         }
 
         .logo-nav {
@@ -42,12 +58,25 @@
             flex-direction: column;
         }
 
-        .logo-nav .main-title { color: white; font-weight: bold; font-size: 1.2rem; text-transform: uppercase; }
-        .logo-nav .sub-title { color: var(--dorado); font-size: 0.75rem; letter-spacing: 2px; }
+        .logo-nav .main-title {
+            color: var(--blanco);
+            font-weight: 600;
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo-nav .sub-title {
+            color: var(--dorado-claro);
+            font-size: 0.72rem;
+            letter-spacing: 4px;
+            margin-top: 2px;
+            font-weight: 500;
+        }
 
         .menu-btn {
-            width: 35px;
-            height: 25px;
+            width: 32px;
+            height: 22px;
             cursor: pointer;
             display: flex;
             flex-direction: column;
@@ -55,38 +84,58 @@
             z-index: 3001;
         }
 
-        .menu-btn span { display: block; height: 3px; width: 100%; background: white; border-radius: 3px; }
+        .menu-btn span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background: var(--dorado-claro);
+            transition: 0.3s ease;
+        }
 
         /* SIDEBAR */
-  .sidebar {
+        .sidebar {
             position: fixed;
             top: 0;
             right: -100%;
-            width: 300px;
+            width: 310px;
             height: 100vh;
-            background: #111;
+            background: var(--negro);
+            border-left: 1px solid var(--dorado);
             z-index: 2500;
-            transition: 0.5s ease;
+            transition: 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
             display: flex;
             flex-direction: column;
-            padding-top: 100px;
+            padding-top: 95px;
+            overflow-y: auto;
         }
 
         .sidebar.active { right: 0; }
 
+        .sidebar-section-label {
+            padding: 20px 40px 6px;
+            color: var(--dorado);
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            font-weight: 600;
+            border-top: 1px solid rgba(184, 151, 88, 0.15);
+            margin-top: 10px;
+        }
+
         .sidebar a {
-            color: #ddd;
+            color: #d8d4cc;
             text-decoration: none;
-            padding: 15px 40px;
-            font-size: 1rem;
+            padding: 13px 40px;
+            font-size: 0.88rem;
             text-transform: uppercase;
-            font-weight: bold;
+            letter-spacing: 1.5px;
+            font-weight: 500;
             border-left: 3px solid transparent;
+            transition: all 0.25s ease;
         }
 
         .sidebar a:hover {
-            color: var(--dorado);
-            background: rgba(255,255,255,0.05);
+            color: var(--dorado-claro);
+            background: rgba(184, 151, 88, 0.08);
             border-left: 3px solid var(--dorado);
         }
 
@@ -96,167 +145,222 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(4px);
+            background: rgba(10, 10, 10, 0.65);
+            backdrop-filter: blur(2px);
             display: none;
             z-index: 2400;
         }
 
         .overlay.active { display: block; }
-        /* --- CONTENIDO REPERTORIO --- */
+
+        /* --- HERO REPERTORIO --- */
         .hero-repertorio {
-            height: 40vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('Virgen del Mar 2026.jpeg');
+            height: 44vh;
+            background:
+                linear-gradient(rgba(15, 10, 11, 0.72), rgba(20, 14, 15, 0.86)),
+                url('Virgen del Mar 2026.jpeg');
             background-size: cover;
             background-position: center;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: var(--blanco);
             text-align: center;
+            padding: 0 20px;
+            border-bottom: 2px solid var(--dorado);
         }
 
+        .hero-repertorio h1 {
+            font-size: 2.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin: 0;
+            border-bottom: 1px solid var(--dorado);
+            padding-bottom: 14px;
+            text-shadow: 0 4px 18px rgba(0, 0, 0, 0.65);
+        }
+
+        /* --- CONTENEDOR --- */
         .container {
-            max-width: 900px;
-            margin: -30px auto 60px;
+            max-width: 920px;
+            margin: -40px auto 95px;
             padding: 0 20px;
+            box-sizing: border-box;
         }
 
         .section-card {
-            background: white;
-            border-radius: 15px;
-            padding: 35px;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            background: var(--blanco);
+            border-radius: 3px;
+            border: 1px solid var(--borde-sutil);
+            border-top: 3px solid var(--granate);
+            padding: 40px 44px;
+            margin-bottom: 34px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
         }
 
         .category-title {
             color: var(--granate);
-            border-bottom: 2px solid var(--dorado);
-            padding-bottom: 10px;
-            margin-bottom: 25px;
+            border-bottom: 1px solid var(--dorado);
+            padding-bottom: 12px;
+            margin: 0 0 26px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            font-size: 1.4rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .category-title::before {
-            content: '🎼';
-            margin-right: 15px;
+            font-size: 1.3rem;
+            font-weight: 600;
         }
 
         .marcha-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid #eee;
+            padding: 12px 0 12px 14px;
+            border-bottom: 1px solid #f0ece3;
+            border-left: 2px solid transparent;
+            transition: border-left-color 0.25s ease;
         }
 
-        .marcha-info strong { color: #111; font-size: 1.05rem; }
-        .marcha-info span { display: block; color: #777; font-size: 0.85rem; font-style: italic; }
+        .marcha-item:hover {
+            border-left-color: var(--dorado);
+        }
 
-        /* ESTRENO 2025 */
+        .marcha-item:last-child {
+            border-bottom: none;
+        }
+
+        .marcha-info strong {
+            color: var(--texto);
+            font-size: 0.98rem;
+            font-weight: 600;
+            display: block;
+        }
+
+        .marcha-info span {
+            font-family: 'Lora', Georgia, serif;
+            display: block;
+            color: var(--texto-secundario);
+            font-size: 0.88rem;
+            font-style: italic;
+            margin-top: 2px;
+        }
+
+        /* ESTRENOS */
         .estreno-box {
-            background: linear-gradient(135deg, #fff9e6, #fff);
-            border: 3px solid var(--dorado);
-            padding: 43px;
-            border-radius: 12px;
-            margin: 24px 0;
+            background: var(--crema);
+            border: 1px solid var(--dorado);
+            padding: 32px 26px 28px;
+            border-radius: 3px;
+            margin: 10px 0 28px;
             text-align: center;
             position: relative;
         }
 
         .badge-estreno {
-            background: var(--dorado);
-            color: white;
-            padding: 4px 40px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
+            background: var(--granate);
+            color: var(--dorado-claro);
+            border: 1px solid var(--dorado);
+            padding: 4px 20px;
+            border-radius: 2px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             position: absolute;
             top: -12px;
             left: 50%;
             transform: translateX(-50%);
+            white-space: nowrap;
         }
 
-        /* SECCIÓN SAN MIGUEL */
-        .san-miguel-card { border-top: 5px solid var(--verde-san-miguel); }
-        .san-miguel-card .category-title { color: var(--verde-san-miguel); border-bottom-color: var(--verde-san-miguel); }
-        .san-miguel-card .category-title::before { content: '🎺'; }
+        .estreno-box strong {
+            display: block;
+            font-family: 'Cinzel', Georgia, serif;
+            color: var(--granate);
+            font-size: 1.05rem;
+            letter-spacing: 1.5px;
+            margin-bottom: 6px;
+        }
+
+        .estreno-box span {
+            font-family: 'Lora', Georgia, serif;
+            font-style: italic;
+            color: var(--texto-secundario);
+            font-size: 0.92rem;
+        }
+
+        /* SECCIÓN SAN MIGUEL (PASO LIGERO) */
+        .san-miguel-card {
+            border-top-color: var(--negro);
+        }
+
+        .san-miguel-card .category-title {
+            color: var(--negro);
+            border-bottom-color: var(--dorado);
+        }
+
+        .san-miguel-card .marcha-item strong {
+            color: var(--texto);
+            font-size: 0.96rem;
+            font-weight: 600;
+        }
 
         .agradecimiento {
+            font-family: 'Lora', Georgia, serif;
             text-align: center;
             font-style: italic;
-            color: #666;
-            font-size: 1.3rem;
-            padding: 30px;
-            background: #f1f1f1;
-            border-radius: 10px;
+            color: var(--texto-secundario);
+            font-size: 1.02rem;
+            line-height: 1.75;
+            padding: 28px 32px;
+            background: var(--blanco);
+            border: 1px solid var(--borde-sutil);
+            border-left: 4px solid var(--dorado);
+            border-radius: 3px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
         }
 
-        @media (max-width: 600px) {
-            .hero-repertorio h1 { font-size: 1.8rem; }
-            .section-card { padding: 20px; }
-            .marcha-item { flex-direction: column; align-items: flex-start; }
+        .agradecimiento strong {
+            color: var(--granate);
+            font-weight: 600;
         }
-                footer {
+
+        /* --- BANNER INFERIOR --- */
+        .banner-fijo {
+            background-color: var(--granate-oscuro);
+            color: var(--dorado-claro);
+            border-top: 1px solid var(--dorado);
+            font-weight: 500;
+            letter-spacing: 1.2px;
+            padding: 10px 16px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
             text-align: center;
-            padding: 40px;
-            border-top: 1px solid #222;
-            color: #555;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
+            box-sizing: border-box;
+            font-size: 0.82rem;
+            text-transform: uppercase;
         }
-        /* --- RESPONSIVE NAVBAR --- */
-@media (max-width: 480px) {
-    .navbar {
-        padding: 0 15px; /* Reduce el espacio a los lados en pantallas muy pequeñas */
-    }
-    
-    .logo-nav .main-title {
-        font-size: 0.95rem; /* Achica el título principal para que no se desborde */
-    }
 
-    .logo-nav .sub-title {
-        font-size: 0.65rem; /* Achica el subtítulo en consonancia */
-        letter-spacing: 1px; /* Reduce un poco el espaciado entre letras */
-    }
-    
-    .menu-btn {
-        width: 30px; /* Hace el botón de menú ligeramente más pequeño */
-        height: 22px;
-    }
-}
-        /* --- ESTILO BASE DEL BANNER INFERIOR --- */
-.banner-fijo {
-    background-color: var(--granate); 
-    color: var(--dorado); 
-    font-weight: bold; 
-    padding: 12px; 
-    position: fixed; 
-    bottom: 0; 
-    left: 0; 
-    width: 100%; 
-    z-index: 1000; 
-    text-align: center; 
-    box-sizing: border-box; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    word-break: break-word;
-    font-size: 0.95rem;
-}
+        /* --- RESPONSIVE --- */
+        @media (max-width: 600px) {
+            .hero-repertorio { height: 34vh; }
+            .hero-repertorio h1 { font-size: 1.8rem; letter-spacing: 2px; }
+            .container { margin: -25px auto 85px; }
+            .section-card { padding: 24px 20px; }
+            .category-title { font-size: 1.1rem; letter-spacing: 1.4px; }
+            .marcha-item { flex-direction: column; align-items: flex-start; }
+            .agradecimiento { padding: 22px 20px; font-size: 0.96rem; }
+        }
 
-/* --- RESPONSIVE PARA EL BANNER (PANTALLAS PEQUEÑAS) --- */
-@media (max-width: 480px) {
-    .banner-fijo {
-        padding: 6px 10px; /* Se vuelve mucho más estrecho */
-        font-size: 0.75rem;  /* Letra más pequeña para que no genere demasiadas líneas */
-    }
-}
+        @media (max-width: 480px) {
+            .navbar { padding: 0 18px; height: 74px; }
+            .logo-nav .main-title { font-size: 0.95rem; letter-spacing: 1px; }
+            .logo-nav .sub-title { font-size: 0.65rem; letter-spacing: 2px; }
+            .hero-repertorio h1 { font-size: 1.5rem; }
+            .banner-fijo { font-size: 0.7rem; padding: 8px 10px; }
+        }
     </style>
 </head>
 <body>
@@ -276,34 +380,39 @@
     <div class="overlay" id="overlay"></div>
     <div class="sidebar" id="sidebar">
         <a href="index.html">Inicio</a>
-        <div style="padding: 18px 40px 5px; color: var(--dorado); font-size: 0.8rem; letter-spacing: 2px;">HISTORIA</div>
-        <a href="HISTORIA VIRGEN DE LA AMARGURA.html">• La Virgen</a>
-        <a href="HISTORIA DE LA BANDA.html">• La Banda</a>
-        <a href="HISTORIA A.M.C. SAN MIGUEL.html">• San Miguel</a>
+
+        <div class="sidebar-section-label">HISTORIA</div>
+        <a href="HISTORIA VIRGEN DE LA AMARGURA.html">La Virgen</a>
+        <a href="HISTORIA DE LA BANDA.html">La Banda</a>
+        <a href="HISTORIA A.M.C. SAN MIGUEL.html">San Miguel</a>
+
+        <div class="sidebar-section-label">AGRUPACIÓN</div>
         <a href="REPERTORIO.html">Música</a>
         <a href="COMPONENTES.html">Componentes</a>
         <a href="UNIFORMIDAD.html">Uniformidad</a>
         <a href="ACTUACIONES.html">Actuaciones</a>
+        <a href="VIDEOTECA.html">Vídeos de marchas</a>
+
+        <div class="sidebar-section-label">SECRETARÍA</div>
         <a href="CONTACTO.html">Contacto</a>
         <a href="REDES.html">Redes sociales</a>
-        <a href="VIDEOTECA.html">Vídeos de marchas</a>
     </div>
 
     <header class="hero-repertorio">
-        <h1>NUESTROS SONES</h1>
+        <h1>Nuestros Sones</h1>
     </header>
 
     <div class="container">
-        
+
         <section class="section-card">
             <h2 class="category-title">Repertorio de Paso Lento</h2>
-                        <div class="estreno-box">
-                <span class="badge-estreno">PRÓXIMOS ESTRENOS</span>
-            <p></p>
-                <strong>¡NO OS PERDÁIS NADA!</strong>
-                            <br>
-                <span>A LA ESPERA DE SACAR NUEVAS MARCHAS</span>
+
+            <div class="estreno-box">
+                <span class="badge-estreno">Próximos Estrenos</span>
+                <strong>No os perdáis nada</strong>
+                <span>A la espera de sacar nuevas marchas</span>
             </div>
+
             <div class="marcha-item"><div class="marcha-info"><strong>Alma Mía</strong><span>Miguel Manzano Alonso</span></div></div>
             <div class="marcha-item"><div class="marcha-info"><strong>A los pies de Sor Ángela</strong><span>Francisco David Álvarez Barroso</span></div></div>
             <div class="marcha-item"><div class="marcha-info"><strong>Christus Vincit</strong><span>Aloys Kunc</span></div></div>
@@ -320,8 +429,10 @@
             <div class="marcha-item"><div class="marcha-info"><strong>Unidos por tu Sangre</strong><span>Antonio Amodeo Ojeda</span></div></div>
             <div class="marcha-item"><div class="marcha-info"><strong>Virgen de la Hiniesta</strong><span>Antonio Gallego Dianez</span></div></div>
             <div class="marcha-item"><div class="marcha-info"><strong>Caridad del Guadalquivir</strong><span>Paco Lola</span></div></div>
-            <div class="marcha-item"><div class="marcha-info"><strong>Corazón de San Juan</strong><span>Alejandro Blanco Hernández</span></div></div>        
-            <div class="marcha-item"><div class="marcha-info"><strong>En la Cena del Señor</strong><span>José Manuel Mena Hervás</span></div></div> </section>
+            <div class="marcha-item"><div class="marcha-info"><strong>Corazón de San Juan</strong><span>Alejandro Blanco Hernández</span></div></div>
+            <div class="marcha-item"><div class="marcha-info"><strong>En la Cena del Señor</strong><span>José Manuel Mena Hervás</span></div></div>
+        </section>
+
         <section class="section-card san-miguel-card">
             <h2 class="category-title">A.M.C. San Miguel (Paso Ligero)</h2>
             <div class="marcha-item"><strong>Bella Ciao</strong></div>
@@ -337,7 +448,6 @@
 
         <section class="section-card">
             <h2 class="category-title">Otros Sones</h2>
-
             <div class="marcha-item"><div class="marcha-info"><strong>Himno Nacional</strong><span>Manuel Espinosa de los Monteros</span></div></div>
             <div class="marcha-item"><div class="marcha-info"><strong>Himno de la Guardia Civil</strong><span>Ildefonso Moreno Carrillo</span></div></div>
             <div class="marcha-item"><div class="marcha-info"><strong>La muerte no es el final</strong><span>Cesáreo Gabaráin Azurmendi</span></div></div>
@@ -347,7 +457,13 @@
         <div class="agradecimiento">
             Arreglos en las partituras realizados por nuestros amigos <strong>Jesús Vellarino Andaluz</strong> y <strong>Alejandro Calleja Gútiez</strong> (entre otros).
         </div>
+
     </div>
+
+    <div class="banner-fijo">
+        Agrupación Musical Virgen de la Amargura · Banda Decana de Santander
+    </div>
+
     <script>
         const menuBtn = document.getElementById('menuBtn');
         const sidebar = document.getElementById('sidebar');
@@ -361,8 +477,5 @@
         menuBtn.addEventListener('click', toggleMenu);
         overlay.addEventListener('click', toggleMenu);
     </script>
-<!-- Reemplaza la etiqueta del final por esta más limpia -->
-<div class="banner-fijo"> 
-    ¡Próximas actuaciones! No os las perdáis - Santander - Agrupación Musical Virgen de la Amargura de Santander
-</div></body>
+</body>
 </html>
